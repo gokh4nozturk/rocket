@@ -1,9 +1,8 @@
 import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 import type { ReactNode } from "react";
-import { CopyButton } from "@/components/copy-button";
 
-const REGISTRY_URL = process.env.NEXT_PUBLIC_REGISTRY_URL ?? "https://rocket.gozturk.dev";
+// const REGISTRY_URL = process.env.NEXT_PUBLIC_REGISTRY_URL ?? "https://rocket.gozturk.dev";
 
 /**
  * Catalogue card for the home grid: title, description and a copyable install
@@ -14,8 +13,8 @@ const REGISTRY_URL = process.env.NEXT_PUBLIC_REGISTRY_URL ?? "https://rocket.goz
 export function PreviewCard({
   slug,
   title,
-  description,
-  registryName,
+  // description,
+  // registryName,
   demo,
 }: {
   slug: string;
@@ -24,7 +23,7 @@ export function PreviewCard({
   registryName: string;
   demo: ReactNode;
 }) {
-  const command = `npx shadcn@latest add ${REGISTRY_URL}/r/${registryName}.json`;
+  // const command = `npx shadcn@latest add ${REGISTRY_URL}/r/${registryName}.json`;
 
   return (
     <div className="group relative flex flex-col overflow-hidden rounded-xl border bg-card transition-colors hover:border-foreground/20">
@@ -36,13 +35,13 @@ export function PreviewCard({
           {title}
           <ArrowUpRight className="size-3.5 text-muted-foreground opacity-0 transition-opacity group-hover:opacity-100" />
         </Link>
-        <p className="text-muted-foreground text-sm leading-relaxed">{description}</p>
+        {/* <p className="text-muted-foreground text-sm leading-relaxed">{description}</p>
         <div className="relative z-10 flex items-center gap-2 rounded-md border bg-background px-2.5 py-1.5">
           <code className="min-w-0 flex-1 truncate font-mono text-muted-foreground text-xs">
             {command}
           </code>
           <CopyButton label={`Copy install command for ${title}`} value={command} />
-        </div>
+        </div> */}
       </div>
 
       <div className="relative h-56 overflow-hidden">
