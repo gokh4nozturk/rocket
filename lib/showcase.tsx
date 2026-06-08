@@ -387,6 +387,14 @@ export const showcaseEntries: ShowcaseEntry[] = [
     title: "Log Stream",
   },
   {
+    demo: <TraceWaterfall spans={traceSpans} />,
+    description:
+      "A distributed-trace waterfall: an indented span tree beside time-positioned duration bars, with a time ruler, service colors, error highlighting, collapsible subtrees and hover detail.",
+    registryName: "trace-waterfall",
+    slug: "trace-waterfall",
+    title: "Trace Waterfall",
+  },
+  {
     demo: <QueryBuilder defaultValue={queryDefault} fields={queryFields} />,
     description:
       "A visual, nested AND/OR query builder with a typed field schema and a read-only SQL/JSON live preview with copy.",
@@ -455,14 +463,6 @@ export const showcaseEntries: ShowcaseEntry[] = [
     registryName: "metric-chart",
     slug: "metric-chart",
     title: "Metric Chart",
-  },
-  {
-    demo: <TraceWaterfall spans={traceSpans} />,
-    description:
-      "A distributed-trace waterfall: an indented span tree beside time-positioned duration bars, with a time ruler, service colors, error highlighting, collapsible subtrees and hover detail.",
-    registryName: "trace-waterfall",
-    slug: "trace-waterfall",
-    title: "Trace Waterfall",
   },
 ];
 
