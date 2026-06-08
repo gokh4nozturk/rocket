@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "rocket",
+  "homepage": "https://rocket.gozturk.dev",
+  "items": [
+    {
+      "name": "timeline",
+      "type": "registry:ui",
+      "title": "Timeline",
+      "description": "A nested, collapsible event timeline with one continuous connector line.",
+      "dependencies": ["lucide-react", "motion"],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/ui/timeline.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    }
+  ]
+}
