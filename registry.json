@@ -44,6 +44,20 @@
           "type": "registry:ui"
         }
       ]
+    },
+    {
+      "name": "query-builder",
+      "type": "registry:ui",
+      "title": "Query Builder",
+      "description": "A visual, nested AND/OR query builder with a typed field schema and a read-only SQL/JSON live preview with copy.",
+      "dependencies": ["lucide-react", "motion"],
+      "registryDependencies": ["button", "select", "input", "tabs"],
+      "files": [
+        {
+          "path": "components/craft/query-builder.tsx",
+          "type": "registry:ui"
+        }
+      ]
     }
   ]
 }

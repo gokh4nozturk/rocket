@@ -1,5 +1,6 @@
 import { ActivityFeed, type ActivityItem } from "@/components/craft/activity-feed";
 import { type CommentNode, CommentThread } from "@/components/craft/comment-thread";
+import { QueryBuilder, type QueryField, type QueryGroup } from "@/components/craft/query-builder";
 import { Timeline, type TimelineItem } from "@/components/craft/timeline";
 
 export type ShowcaseEntry = {
@@ -211,6 +212,49 @@ const comments: CommentNode[] = [
   },
 ];
 
+const queryFields: QueryField[] = [
+  {
+    label: "Status",
+    name: "status",
+    options: [
+      { label: "Active", value: "active" },
+      { label: "Trialing", value: "trialing" },
+      { label: "Churned", value: "churned" },
+    ],
+    type: "select",
+  },
+  {
+    label: "Plan",
+    name: "plan",
+    options: [
+      { label: "Free", value: "free" },
+      { label: "Pro", value: "pro" },
+      { label: "Team", value: "team" },
+    ],
+    type: "select",
+  },
+  { label: "Name", name: "name", type: "text" },
+  { label: "MRR", name: "mrr", type: "number" },
+  { label: "Signed up", name: "signedUpAt", type: "date" },
+  { label: "Verified", name: "isVerified", type: "boolean" },
+];
+
+const queryDefault: QueryGroup = {
+  combinator: "or",
+  id: "root",
+  rules: [
+    {
+      combinator: "and",
+      id: "g1",
+      rules: [
+        { field: "status", id: "r1", operator: "eq", value: "active" },
+        { field: "mrr", id: "r2", operator: "gt", value: "100" },
+      ],
+    },
+    { field: "plan", id: "r3", operator: "in", value: ["pro", "team"] },
+  ],
+};
+
 export const showcaseEntries: ShowcaseEntry[] = [
   {
     demo: <Timeline items={timelineItems} />,
@@ -234,6 +278,14 @@ export const showcaseEntries: ShowcaseEntry[] = [
     registryName: "comment-thread",
     slug: "comment-thread",
     title: "Comment Thread",
+  },
+  {
+    demo: <QueryBuilder defaultValue={queryDefault} fields={queryFields} />,
+    description:
+      "A visual, nested AND/OR query builder with a typed field schema and a read-only SQL/JSON live preview with copy.",
+    registryName: "query-builder",
+    slug: "query-builder",
+    title: "Query Builder",
   },
 ];
 

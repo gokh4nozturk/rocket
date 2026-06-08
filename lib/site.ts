@@ -28,6 +28,7 @@ export const siteConfig = {
     "timeline component",
     "activity feed",
     "comment thread",
+    "query builder",
     "ui components",
   ],
   name: "rocket",
