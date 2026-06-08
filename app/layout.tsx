@@ -70,8 +70,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           disableTransitionOnChange
           enableSystem
         >
-          <div className="mx-auto flex w-full max-w-7xl flex-col md:flex-row">
-            <aside className="flex shrink-0 flex-col gap-6 border-b px-6 py-6 md:h-screen md:w-56 md:border-r md:border-b-0">
+          <div className="relative mx-auto flex w-full max-w-7xl flex-col md:flex-row">
+            <aside className="fixed flex shrink-0 flex-col gap-6 border-b px-6 py-6 md:h-screen md:w-56 md:border-r md:border-b-0">
               <Link className="flex flex-col gap-0.5" href="/">
                 <span className="font-semibold text-foreground">rocket</span>
                 <span className="text-muted-foreground text-xs">shadcn registry</span>
@@ -116,7 +116,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <ModeToggle />
               </div>
             </aside>
-            <main className="min-w-0 flex-1 px-6 py-12">{children}</main>
+            <main className="min-w-0 flex-1 px-6 py-12 md:ml-56">{children}</main>
           </div>
         </ThemeProvider>
       </body>
