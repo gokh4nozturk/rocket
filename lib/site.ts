@@ -32,6 +32,8 @@ export const siteConfig = {
     "json inspector",
     "stat tile",
     "kpi",
+    "diff viewer",
+    "json diff",
     "ui components",
   ],
   name: "rocket",

@@ -86,6 +86,20 @@
           "type": "registry:ui"
         }
       ]
+    },
+    {
+      "name": "diff-viewer",
+      "type": "registry:ui",
+      "title": "Diff Viewer",
+      "description": "A code-editor-style structural diff viewer for two JSON values, with unified/split toggle, an only-changes filter, type coloring and add/remove/change counts.",
+      "dependencies": ["lucide-react", "motion"],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/craft/diff-viewer.tsx",
+          "type": "registry:ui"
+        }
+      ]
     }
   ]
 }

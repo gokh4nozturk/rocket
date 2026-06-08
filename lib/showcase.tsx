@@ -1,5 +1,6 @@
 import { ActivityFeed, type ActivityItem } from "@/components/craft/activity-feed";
 import { type CommentNode, CommentThread } from "@/components/craft/comment-thread";
+import { DiffViewer } from "@/components/craft/diff-viewer";
 import { JsonInspector } from "@/components/craft/json-inspector";
 import { QueryBuilder, type QueryField, type QueryGroup } from "@/components/craft/query-builder";
 import { Timeline, type TimelineItem } from "@/components/craft/timeline";
@@ -274,6 +275,23 @@ const jsonSample = {
   roles: ["admin", "engineer"],
 };
 
+const diffBefore = {
+  id: "usr_8x21",
+  name: "Ada Lovelace",
+  plan: "free",
+  profile: { city: "London", verified: false },
+  roles: ["engineer"],
+  seats: 1,
+};
+
+const diffAfter = {
+  id: "usr_8x21",
+  name: "Ada Lovelace",
+  plan: "pro",
+  profile: { city: "London", country: "UK", verified: true },
+  roles: ["engineer", "admin"],
+};
+
 export const showcaseEntries: ShowcaseEntry[] = [
   {
     demo: <QueryBuilder defaultValue={queryDefault} fields={queryFields} />,
@@ -321,6 +339,14 @@ export const showcaseEntries: ShowcaseEntry[] = [
     registryName: "stat-tile",
     slug: "stat-tile",
     title: "Stat Tile",
+  },
+  {
+    demo: <DiffViewer after={diffAfter} before={diffBefore} />,
+    description:
+      "A code-editor-style structural diff viewer for two JSON values, with unified/split toggle, an only-changes filter, type coloring and add/remove/change counts.",
+    registryName: "diff-viewer",
+    slug: "diff-viewer",
+    title: "Diff Viewer",
   },
 ];
 
