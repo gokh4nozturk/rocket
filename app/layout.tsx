@@ -77,6 +77,23 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <span className="text-muted-foreground text-xs">shadcn registry</span>
               </Link>
               <SidebarNav items={navItems} />
+              <nav aria-label="Resources" className="flex flex-col gap-1.5 text-sm">
+                <span className="font-medium text-muted-foreground text-xs uppercase tracking-wide">
+                  Resources
+                </span>
+                <Link
+                  className="text-muted-foreground transition-colors hover:text-foreground"
+                  href="/llms.txt"
+                >
+                  llms.txt
+                </Link>
+                <Link
+                  className="text-muted-foreground transition-colors hover:text-foreground"
+                  href="/llms-full.txt"
+                >
+                  llms-full.txt
+                </Link>
+              </nav>
               <div className="mt-auto flex flex-col gap-3">
                 <div className="flex flex-col gap-1.5 text-sm">
                   <a
