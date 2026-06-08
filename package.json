@@ -4,6 +4,7 @@
   "private": true,
   "author": "gokh4nozturk",
   "scripts": {
+    "prepare": "git config core.hooksPath .githooks",
     "dev": "next dev --turbopack",
     "build": "shadcn build && next build",
     "start": "next start",

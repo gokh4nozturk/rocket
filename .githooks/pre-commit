@@ -1,0 +1,12 @@
+#!/bin/sh
+#
+# Runs Biome over the staged files only: auto-fixes what it can, re-stages the
+# result, and blocks the commit if anything is left unfixable. Shared via
+# core.hooksPath, set up by the package.json "prepare" script.
+
+set -e
+
+pnpm exec biome check --staged --write --no-errors-on-unmatched
+
+# Re-stage the files Biome just rewrote so the fixes land in this commit.
+git update-index --again
