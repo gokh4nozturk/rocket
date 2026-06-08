@@ -3,6 +3,7 @@ import { type CommentNode, CommentThread } from "@/components/craft/comment-thre
 import { JsonInspector } from "@/components/craft/json-inspector";
 import { QueryBuilder, type QueryField, type QueryGroup } from "@/components/craft/query-builder";
 import { Timeline, type TimelineItem } from "@/components/craft/timeline";
+import { StatTileDemo } from "@/components/showcase/stat-tile-demo";
 
 export type ShowcaseEntry = {
   /** Route segment, e.g. "timeline". */
@@ -312,6 +313,14 @@ export const showcaseEntries: ShowcaseEntry[] = [
     registryName: "comment-thread",
     slug: "comment-thread",
     title: "Comment Thread",
+  },
+  {
+    demo: <StatTileDemo />,
+    description:
+      "A KPI stat tile with an animated count-up value, trend delta with semantic coloring (invertable), and a recharts sparkline with gradient fill.",
+    registryName: "stat-tile",
+    slug: "stat-tile",
+    title: "Stat Tile",
   },
 ];
 

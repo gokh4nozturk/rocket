@@ -72,6 +72,20 @@
           "type": "registry:ui"
         }
       ]
+    },
+    {
+      "name": "stat-tile",
+      "type": "registry:ui",
+      "title": "Stat Tile",
+      "description": "A KPI stat tile with an animated count-up value, trend delta with semantic coloring (invertable), and a recharts sparkline with gradient fill.",
+      "dependencies": ["lucide-react", "motion", "recharts"],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/craft/stat-tile.tsx",
+          "type": "registry:ui"
+        }
+      ]
     }
   ]
 }

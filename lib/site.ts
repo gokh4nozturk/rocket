@@ -30,6 +30,8 @@ export const siteConfig = {
     "comment thread",
     "query builder",
     "json inspector",
+    "stat tile",
+    "kpi",
     "ui components",
   ],
   name: "rocket",
