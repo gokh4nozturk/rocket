@@ -290,6 +290,14 @@ export const showcaseEntries: ShowcaseEntry[] = [
     title: "Timeline",
   },
   {
+    demo: <JsonInspector data={jsonSample} defaultExpandedDepth={2} rootName="user" />,
+    description:
+      "A collapsible, searchable, code-editor-style JSON tree viewer with type coloring, line numbers, match highlighting and per-node path/value copy.",
+    registryName: "json-inspector",
+    slug: "json-inspector",
+    title: "JSON Inspector",
+  },
+  {
     demo: <ActivityFeed items={activityItems} />,
     description:
       "An avatar-led activity feed with type badges, attachments, date grouping and a live indicator.",
@@ -304,14 +312,6 @@ export const showcaseEntries: ShowcaseEntry[] = [
     registryName: "comment-thread",
     slug: "comment-thread",
     title: "Comment Thread",
-  },
-  {
-    demo: <JsonInspector data={jsonSample} defaultExpandedDepth={2} rootName="user" />,
-    description:
-      "A collapsible, searchable, code-editor-style JSON tree viewer with type coloring, line numbers, match highlighting and per-node path/value copy.",
-    registryName: "json-inspector",
-    slug: "json-inspector",
-    title: "JSON Inspector",
   },
 ];
 
