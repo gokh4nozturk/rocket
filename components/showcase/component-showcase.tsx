@@ -1,47 +1,11 @@
 "use client";
 
-import { Check, Copy } from "lucide-react";
-import { type ReactNode, useState } from "react";
+import type { ReactNode } from "react";
+import { CopyButton } from "@/components/copy-button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { cn } from "@/lib/utils";
 
 const REGISTRY_URL = process.env.NEXT_PUBLIC_REGISTRY_URL ?? "https://rocket.gozturk.dev";
-
-function CopyButton({
-  value,
-  label,
-  className,
-}: {
-  value: string;
-  label: string;
-  className?: string;
-}) {
-  const [copied, setCopied] = useState(false);
-
-  const copy = async () => {
-    try {
-      await navigator.clipboard.writeText(value);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 1500);
-    } catch {
-      /* clipboard unavailable */
-    }
-  };
-
-  return (
-    <button
-      aria-label={label}
-      className={cn(
-        "shrink-0 text-muted-foreground transition-colors hover:text-foreground",
-        className,
-      )}
-      onClick={copy}
-      type="button"
-    >
-      {copied ? <Check className="size-4 text-green-500" /> : <Copy className="size-4" />}
-    </button>
-  );
-}
 
 /**
  * Doc-style showcase card: title, description, a copyable shadcn install command

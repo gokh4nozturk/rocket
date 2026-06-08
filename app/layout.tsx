@@ -72,11 +72,30 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         >
           <div className="mx-auto flex w-full max-w-7xl flex-col md:flex-row">
             <aside className="flex shrink-0 flex-col gap-6 border-b px-6 py-6 md:h-screen md:w-56 md:border-r md:border-b-0">
-              <Link className="font-semibold text-foreground" href="/">
-                rocket
+              <Link className="flex flex-col gap-0.5" href="/">
+                <span className="font-semibold text-foreground">rocket</span>
+                <span className="text-muted-foreground text-xs">shadcn registry</span>
               </Link>
               <SidebarNav items={navItems} />
-              <div className="mt-auto">
+              <div className="mt-auto flex flex-col gap-3">
+                <div className="flex flex-col gap-1.5 text-sm">
+                  <a
+                    className="text-muted-foreground transition-colors hover:text-foreground"
+                    href={siteConfig.author.url}
+                    rel="noreferrer"
+                    target="_blank"
+                  >
+                    {siteConfig.author.name}
+                  </a>
+                  <a
+                    className="text-muted-foreground transition-colors hover:text-foreground"
+                    href={`https://x.com/${siteConfig.author.twitter.replace(/^@/, "")}`}
+                    rel="noreferrer"
+                    target="_blank"
+                  >
+                    {siteConfig.author.twitter}
+                  </a>
+                </div>
                 <ModeToggle />
               </div>
             </aside>
