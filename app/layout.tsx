@@ -27,13 +27,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           disableTransitionOnChange
           enableSystem
         >
-          <header className="mx-auto flex w-full max-w-3xl items-center justify-between px-6 py-5">
+          <header className="mx-auto flex w-full max-w-7xl items-center justify-between px-6 py-5">
             <Link className="font-semibold text-foreground" href="/">
               rocket
             </Link>
             <ModeToggle />
           </header>
-          <main className="mx-auto w-full max-w-3xl px-6 pb-28">{children}</main>
+          <main className="mx-auto w-full max-w-7xl px-6">{children}</main>
         </ThemeProvider>
       </body>
     </html>
