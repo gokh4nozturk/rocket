@@ -46,3 +46,4 @@ next-env.d.ts
 .playwright*
 # Superpowers brainstorm scratch
 .superpowers/
+docs/superpowers
