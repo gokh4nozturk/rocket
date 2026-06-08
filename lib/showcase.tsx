@@ -257,6 +257,14 @@ const queryDefault: QueryGroup = {
 
 export const showcaseEntries: ShowcaseEntry[] = [
   {
+    demo: <QueryBuilder defaultValue={queryDefault} fields={queryFields} />,
+    description:
+      "A visual, nested AND/OR query builder with a typed field schema and a read-only SQL/JSON live preview with copy.",
+    registryName: "query-builder",
+    slug: "query-builder",
+    title: "Query Builder",
+  },
+  {
     demo: <Timeline items={timelineItems} />,
     description: "A nested, collapsible event timeline with one continuous connector line.",
     registryName: "timeline",
@@ -278,14 +286,6 @@ export const showcaseEntries: ShowcaseEntry[] = [
     registryName: "comment-thread",
     slug: "comment-thread",
     title: "Comment Thread",
-  },
-  {
-    demo: <QueryBuilder defaultValue={queryDefault} fields={queryFields} />,
-    description:
-      "A visual, nested AND/OR query builder with a typed field schema and a read-only SQL/JSON live preview with copy.",
-    registryName: "query-builder",
-    slug: "query-builder",
-    title: "Query Builder",
   },
 ];
 
