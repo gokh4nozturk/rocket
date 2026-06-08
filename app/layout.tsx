@@ -1,3 +1,4 @@
+import { Analytics } from "@vercel/analytics/next";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import Link from "next/link";
@@ -34,6 +35,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <ModeToggle />
           </header>
           <main className="mx-auto w-full max-w-7xl px-6">{children}</main>
+          <Analytics />
         </ThemeProvider>
       </body>
     </html>
