@@ -87,21 +87,29 @@ const timelineItems: TimelineItem[] = [
 
 export default function Home() {
   return (
-    <div className="flex w-full flex-col items-start gap-12">
-      <div>
-        <h1 className="font-medium text-foreground text-xl">rocket</h1>
-        <p className="mt-2 text-muted-foreground text-sm">
-          A small component library distributed as a shadcn registry.
-        </p>
-      </div>
+    <div className="container grid items-start gap-12 py-8 lg:grid-cols-[1fr_3fr_1fr]">
+      <aside>
+        <h1 className="font-medium text-foreground text-xl">shadcn registry</h1>
+      </aside>
+      <div className="flex w-full flex-col items-start gap-12">
+        <div>
+          <h1 className="font-medium text-foreground text-xl">rocket</h1>
+          <p className="mt-2 text-muted-foreground text-sm">
+            A small component library distributed as a shadcn registry.
+          </p>
+        </div>
 
-      <ComponentShowcase
-        description="A nested, collapsible event timeline with one continuous connector line."
-        name="timeline"
-        title="Timeline"
-      >
-        <Timeline items={timelineItems} />
-      </ComponentShowcase>
+        <ComponentShowcase
+          description="A nested, collapsible event timeline with one continuous connector line."
+          name="timeline"
+          title="Timeline"
+        >
+          <Timeline items={timelineItems} />
+        </ComponentShowcase>
+      </div>
+      <aside>
+        <h1 className="font-medium text-foreground text-xl">shadcn registry</h1>
+      </aside>
     </div>
   );
 }
