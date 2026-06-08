@@ -1,5 +1,6 @@
 import { ActivityFeed, type ActivityItem } from "@/components/craft/activity-feed";
 import { type CommentNode, CommentThread } from "@/components/craft/comment-thread";
+import { JsonInspector } from "@/components/craft/json-inspector";
 import { QueryBuilder, type QueryField, type QueryGroup } from "@/components/craft/query-builder";
 import { Timeline, type TimelineItem } from "@/components/craft/timeline";
 
@@ -255,13 +256,46 @@ const queryDefault: QueryGroup = {
   ],
 };
 
+const jsonSample = {
+  active: true,
+  id: "usr_8x21",
+  lastSeen: null,
+  name: "Ada Lovelace",
+  orders: [
+    { id: "ord_1", items: 3, status: "shipped", total: 129.99 },
+    { id: "ord_2", items: 1, status: "pending", total: 14.5 },
+  ],
+  profile: {
+    email: "ada@analytical.engine",
+    location: { city: "London", country: "UK" },
+    verified: false,
+  },
+  roles: ["admin", "engineer"],
+};
+
 export const showcaseEntries: ShowcaseEntry[] = [
+  {
+    demo: <QueryBuilder defaultValue={queryDefault} fields={queryFields} />,
+    description:
+      "A visual, nested AND/OR query builder with a typed field schema and a read-only SQL/JSON live preview with copy.",
+    registryName: "query-builder",
+    slug: "query-builder",
+    title: "Query Builder",
+  },
   {
     demo: <Timeline items={timelineItems} />,
     description: "A nested, collapsible event timeline with one continuous connector line.",
     registryName: "timeline",
     slug: "timeline",
     title: "Timeline",
+  },
+  {
+    demo: <JsonInspector data={jsonSample} defaultExpandedDepth={2} rootName="user" />,
+    description:
+      "A collapsible, searchable, code-editor-style JSON tree viewer with type coloring, line numbers, match highlighting and per-node path/value copy.",
+    registryName: "json-inspector",
+    slug: "json-inspector",
+    title: "JSON Inspector",
   },
   {
     demo: <ActivityFeed items={activityItems} />,
@@ -278,14 +312,6 @@ export const showcaseEntries: ShowcaseEntry[] = [
     registryName: "comment-thread",
     slug: "comment-thread",
     title: "Comment Thread",
-  },
-  {
-    demo: <QueryBuilder defaultValue={queryDefault} fields={queryFields} />,
-    description:
-      "A visual, nested AND/OR query builder with a typed field schema and a read-only SQL/JSON live preview with copy.",
-    registryName: "query-builder",
-    slug: "query-builder",
-    title: "Query Builder",
   },
 ];
 
