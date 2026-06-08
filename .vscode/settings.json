@@ -7,7 +7,6 @@
     "source.organizeImports.biome": "always",
     "source.removeUnusedImports": "always",
     "source.sort.json": "always",
-    "source.sortImports": "always"
   },
   "editor.defaultFormatter": "biomejs.biome",
   "tailwindCSS.lint.suggestCanonicalClasses": "ignore"
