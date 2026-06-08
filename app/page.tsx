@@ -67,19 +67,22 @@ export default function Home() {
         </div>
       </header>
 
-      <ul className="grid w-full gap-4 lg:grid-cols-2">
-        {showcaseEntries.map((entry) => (
-          <li className="min-w-0" key={entry.slug}>
-            <PreviewCard
-              demo={entry.demo}
-              description={entry.description}
-              registryName={entry.registryName}
-              slug={entry.slug}
-              title={entry.title}
-            />
-          </li>
-        ))}
-      </ul>
+      <section className="flex w-full flex-col gap-4">
+        <h2 className="font-medium text-foreground text-sm tracking-tight">Components</h2>
+        <ul className="grid w-full gap-4 lg:grid-cols-2">
+          {showcaseEntries.map((entry) => (
+            <li className="min-w-0" key={entry.slug}>
+              <PreviewCard
+                demo={entry.demo}
+                description={entry.description}
+                registryName={entry.registryName}
+                slug={entry.slug}
+                title={entry.title}
+              />
+            </li>
+          ))}
+        </ul>
+      </section>
     </div>
   );
 }

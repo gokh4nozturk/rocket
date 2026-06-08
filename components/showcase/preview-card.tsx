@@ -28,13 +28,12 @@ export function PreviewCard({
   return (
     <div className="group relative flex flex-col overflow-hidden rounded-xl border bg-card transition-colors hover:border-foreground/20">
       <div className="flex flex-col gap-2.5 border-b p-4">
-        <Link
-          className="flex items-center gap-1 font-medium text-foreground text-sm after:absolute after:inset-0"
-          href={`/${slug}`}
-        >
-          {title}
-          <ArrowUpRight className="size-3.5 text-muted-foreground opacity-0 transition-opacity group-hover:opacity-100" />
-        </Link>
+        <h3 className="font-medium text-foreground text-sm">
+          <Link className="flex items-center gap-1 after:absolute after:inset-0" href={`/${slug}`}>
+            {title}
+            <ArrowUpRight className="size-3.5 text-muted-foreground opacity-0 transition-opacity group-hover:opacity-100" />
+          </Link>
+        </h3>
         {/* <p className="text-muted-foreground text-sm leading-relaxed">{description}</p>
         <div className="relative z-10 flex items-center gap-2 rounded-md border bg-background px-2.5 py-1.5">
           <code className="min-w-0 flex-1 truncate font-mono text-muted-foreground text-xs">
