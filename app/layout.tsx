@@ -27,7 +27,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           disableTransitionOnChange
           enableSystem
         >
-          <header className="mx-auto flex w-full max-w-7xl items-center justify-between px-6 py-5">
+          <header className="mx-auto flex w-full max-w-7xl items-center justify-between border-b px-6 py-5">
             <Link className="font-semibold text-foreground" href="/">
               rocket
             </Link>
