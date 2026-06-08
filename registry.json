@@ -100,6 +100,20 @@
           "type": "registry:ui"
         }
       ]
+    },
+    {
+      "name": "log-stream",
+      "type": "registry:ui",
+      "title": "Log Stream",
+      "description": "A live-tail log stream with level filters and counts, message search, auto-scroll with a 'new lines' indicator, and expandable rows for structured detail.",
+      "dependencies": ["lucide-react", "motion"],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/craft/log-stream.tsx",
+          "type": "registry:ui"
+        }
+      ]
     }
   ]
 }

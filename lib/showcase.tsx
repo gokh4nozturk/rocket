@@ -4,6 +4,7 @@ import { DiffViewer } from "@/components/craft/diff-viewer";
 import { JsonInspector } from "@/components/craft/json-inspector";
 import { QueryBuilder, type QueryField, type QueryGroup } from "@/components/craft/query-builder";
 import { Timeline, type TimelineItem } from "@/components/craft/timeline";
+import { LogStreamDemo } from "@/components/showcase/log-stream-demo";
 import { StatTileDemo } from "@/components/showcase/stat-tile-demo";
 
 export type ShowcaseEntry = {
@@ -347,6 +348,14 @@ export const showcaseEntries: ShowcaseEntry[] = [
     registryName: "diff-viewer",
     slug: "diff-viewer",
     title: "Diff Viewer",
+  },
+  {
+    demo: <LogStreamDemo />,
+    description:
+      "A live-tail log stream with level filters and counts, message search, auto-scroll with a 'new lines' indicator, and expandable rows for structured detail.",
+    registryName: "log-stream",
+    slug: "log-stream",
+    title: "Log Stream",
   },
 ];
 

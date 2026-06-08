@@ -34,6 +34,8 @@ export const siteConfig = {
     "kpi",
     "diff viewer",
     "json diff",
+    "log stream",
+    "live tail",
     "ui components",
   ],
   name: "rocket",
