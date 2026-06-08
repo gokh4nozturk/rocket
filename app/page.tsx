@@ -1,6 +1,7 @@
-import { ComponentShowcase } from "@/components/showcase/component-showcase";
 import { ActivityFeed, type ActivityItem } from "@/components/craft/activity-feed";
+import { type CommentNode, CommentThread } from "@/components/craft/comment-thread";
 import { Timeline, type TimelineItem } from "@/components/craft/timeline";
+import { ComponentShowcase } from "@/components/showcase/component-showcase";
 
 const timelineItems: TimelineItem[] = [
   {
@@ -145,6 +146,59 @@ const activityItems: ActivityItem[] = [
   },
 ];
 
+const comments: CommentNode[] = [
+  {
+    author: {
+      avatarUrl: "https://avatars.githubusercontent.com/u/124599?v=4",
+      name: "Ada Lovelace",
+    },
+    body: "Shipped the new connector — it's one continuous path now, no seams between rows. @grace can you sanity-check the mobile spacing?",
+    edited: true,
+    id: "c1",
+    pinned: true,
+    reactions: [
+      { count: 4, emoji: "👍", reacted: true },
+      { count: 2, emoji: "🎉" },
+    ],
+    replies: [
+      {
+        author: {
+          avatarUrl: "https://avatars.githubusercontent.com/u/810438?v=4",
+          name: "Grace Hopper",
+        },
+        body: "Looks great. One nit: the elbow radius feels a touch tight at the narrowest breakpoint.",
+        id: "c1-1",
+        reactions: [{ count: 1, emoji: "👀" }],
+        replies: [
+          {
+            author: {
+              avatarUrl: "https://avatars.githubusercontent.com/u/124599?v=4",
+              name: "Ada Lovelace",
+            },
+            body: "Good catch — bumping it to 12px. This reply is flattened since it's past the depth cap.",
+            id: "c1-1-1",
+            time: min(20),
+          },
+          {
+            author: { name: "Linus Park" },
+            body: "+1, reads much cleaner now.",
+            id: "c1-1-2",
+            time: min(8),
+          },
+        ],
+        time: min(40),
+      },
+    ],
+    time: min(120),
+  },
+  {
+    author: { name: "Margaret Hamilton" },
+    body: "Should reactions persist to the server in this demo, or stay local for now?",
+    id: "c2",
+    time: min(15),
+  },
+];
+
 export default function Home() {
   return (
     <div className="flex w-full flex-col items-start gap-12 py-12">
@@ -169,6 +223,14 @@ export default function Home() {
         title="Activity Feed"
       >
         <ActivityFeed items={activityItems} />
+      </ComponentShowcase>
+
+      <ComponentShowcase
+        description="A threaded comment discussion with depth-capped nesting, avatar rows, reactions, replies and collapsible subtrees."
+        name="comment-thread"
+        title="Comment Thread"
+      >
+        <CommentThread comments={comments} currentUser={{ name: "Katherine Johnson" }} />
       </ComponentShowcase>
     </div>
   );
