@@ -2,6 +2,7 @@
   "name": "rocket",
   "version": "0.1.0",
   "private": true,
+  "author": "gokh4nozturk",
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "shadcn build && next build",

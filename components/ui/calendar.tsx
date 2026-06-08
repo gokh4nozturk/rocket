@@ -68,6 +68,7 @@ function Calendar({
           "flex h-(--cell-size) w-full items-center justify-center px-(--cell-size)",
           defaultClassNames.month_caption,
         ),
+        month_grid: "w-full border-collapse",
         months: cn("relative flex flex-col gap-4 md:flex-row", defaultClassNames.months),
         nav: cn(
           "absolute inset-x-0 top-0 flex w-full items-center justify-between gap-1",
@@ -86,7 +87,6 @@ function Calendar({
           "relative isolate z-0 rounded-l-(--cell-radius) bg-muted after:absolute after:inset-y-0 after:right-0 after:w-4 after:bg-muted",
           defaultClassNames.range_start,
         ),
-        month_grid: "w-full border-collapse",
         root: cn("w-fit", defaultClassNames.root),
         today: cn(
           "rounded-(--cell-radius) bg-muted text-foreground data-[selected=true]:rounded-none",

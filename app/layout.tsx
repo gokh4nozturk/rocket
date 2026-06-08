@@ -5,14 +5,53 @@ import { ModeToggle } from "@/components/mode-toggle";
 import { SidebarNav } from "@/components/showcase/sidebar-nav";
 import { ThemeProvider } from "@/components/theme-provider";
 import { showcaseEntries } from "@/lib/showcase";
+import { siteConfig } from "@/lib/site";
 import "./globals.css";
 
 const geistSans = Geist({ subsets: ["latin"], variable: "--font-geist-sans" });
 const geistMono = Geist_Mono({ subsets: ["latin"], variable: "--font-geist-mono" });
 
 export const metadata: Metadata = {
-  description: "A small, distinctive component library distributed as a shadcn registry.",
-  title: "rocket",
+  alternates: {
+    canonical: "/",
+  },
+  applicationName: siteConfig.name,
+  authors: [{ name: siteConfig.author.name, url: siteConfig.author.url }],
+  category: "technology",
+  creator: siteConfig.author.name,
+  description: siteConfig.description,
+  keywords: [...siteConfig.keywords],
+  metadataBase: new URL(siteConfig.url),
+  openGraph: {
+    description: siteConfig.description,
+    locale: "en_US",
+    siteName: siteConfig.name,
+    title: siteConfig.title,
+    type: "website",
+    url: siteConfig.url,
+  },
+  publisher: siteConfig.author.name,
+  robots: {
+    follow: true,
+    googleBot: {
+      follow: true,
+      index: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+    index: true,
+  },
+  title: {
+    default: siteConfig.title,
+    template: `%s — ${siteConfig.name}`,
+  },
+  twitter: {
+    card: "summary_large_image",
+    creator: "@gokh4nozturk",
+    description: siteConfig.description,
+    title: siteConfig.title,
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

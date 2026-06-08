@@ -223,10 +223,10 @@
   @apply overflow-hidden rounded-xl;
 }
 .shiki-block .shiki {
-  margin: 0;
   max-height: 30rem;
-  overflow: auto;
   padding: 1rem;
+  margin: 0;
+  overflow: auto;
   font-family: var(--font-mono), ui-monospace, monospace;
   font-size: 0.8125rem;
   line-height: 1.6;
