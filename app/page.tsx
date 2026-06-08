@@ -1,6 +1,6 @@
 import { ComponentShowcase } from "@/components/showcase/component-showcase";
-import { ActivityFeed, type ActivityItem } from "@/components/ui/activity-feed";
-import { Timeline, type TimelineItem } from "@/components/ui/timeline";
+import { ActivityFeed, type ActivityItem } from "@/components/craft/activity-feed";
+import { Timeline, type TimelineItem } from "@/components/craft/timeline";
 
 const timelineItems: TimelineItem[] = [
   {
