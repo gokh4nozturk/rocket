@@ -1,6 +1,6 @@
 "use client";
 
-import { ChevronRight, Copy, Search, X } from "lucide-react";
+import { Braces, Check, ChevronRight, Copy, type LucideIcon, Search, X } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import type { ReactNode } from "react";
 import { useEffect, useMemo, useRef, useState } from "react";
@@ -309,17 +309,31 @@ function Highlight({ text, query }: { text: string; query: string }) {
   return <>{parts}</>;
 }
 
-function CopyButton({ text, title }: { text: string; title: string }) {
+function CopyAction({
+  text,
+  label,
+  icon: Icon,
+}: {
+  text: string;
+  label: string;
+  icon: LucideIcon;
+}) {
   const { copied, copy } = useCopy();
   return (
     <button
-      aria-label={title}
-      className="rounded p-0.5 text-muted-foreground hover:text-foreground"
+      aria-label={`Copy ${label}`}
+      className={cn(
+        "flex items-center gap-1 rounded px-1 py-0.5 font-sans text-[10px] transition-colors hover:bg-muted",
+        copied
+          ? "text-emerald-600 dark:text-emerald-400"
+          : "text-muted-foreground hover:text-foreground",
+      )}
       onClick={() => copy(text)}
-      title={title}
+      title={`Copy ${label}`}
       type="button"
     >
-      {copied ? <span className="text-[10px]">✓</span> : <Copy className="size-3" />}
+      {copied ? <Check className="size-3" /> : <Icon className="size-3" />}
+      {copied ? "Copied" : label}
     </button>
   );
 }
@@ -406,9 +420,9 @@ function Row({
         {row.trailingComma ? <span className="text-muted-foreground">,</span> : null}
       </div>
       {row.variant !== "close" ? (
-        <span className="flex shrink-0 items-center gap-0.5 pr-1 opacity-0 transition-opacity group-hover/row:opacity-100">
-          <CopyButton text={pathToString(row.path, rootName)} title="Copy path" />
-          <CopyButton text={valueText(row.raw)} title="Copy value" />
+        <span className="flex shrink-0 items-center gap-0.5 pr-1 opacity-0 transition-opacity group-focus-within/row:opacity-100 group-hover/row:opacity-100">
+          <CopyAction icon={Braces} label="path" text={pathToString(row.path, rootName)} />
+          <CopyAction icon={Copy} label="value" text={valueText(row.raw)} />
         </span>
       ) : null}
     </div>
