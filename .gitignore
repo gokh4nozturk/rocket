@@ -44,3 +44,5 @@ next-env.d.ts
 /public/r
 
 .playwright*
+# Superpowers brainstorm scratch
+.superpowers/
