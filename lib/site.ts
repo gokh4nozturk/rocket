@@ -36,6 +36,8 @@ export const siteConfig = {
     "json diff",
     "log stream",
     "live tail",
+    "metric chart",
+    "time series",
     "ui components",
   ],
   name: "rocket",

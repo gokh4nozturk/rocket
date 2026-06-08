@@ -114,6 +114,20 @@
           "type": "registry:ui"
         }
       ]
+    },
+    {
+      "name": "metric-chart",
+      "type": "registry:ui",
+      "title": "Metric Chart",
+      "description": "An observability time-series chart with threshold lines, event annotations, breach shading, and a crosshair tooltip with a click-to-toggle legend.",
+      "dependencies": ["recharts"],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/craft/metric-chart.tsx",
+          "type": "registry:ui"
+        }
+      ]
     }
   ]
 }

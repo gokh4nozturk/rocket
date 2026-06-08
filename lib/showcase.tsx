@@ -2,6 +2,12 @@ import { ActivityFeed, type ActivityItem } from "@/components/craft/activity-fee
 import { type CommentNode, CommentThread } from "@/components/craft/comment-thread";
 import { DiffViewer } from "@/components/craft/diff-viewer";
 import { JsonInspector } from "@/components/craft/json-inspector";
+import {
+  type MetricAnnotation,
+  MetricChart,
+  type MetricSeries,
+  type MetricThreshold,
+} from "@/components/craft/metric-chart";
 import { QueryBuilder, type QueryField, type QueryGroup } from "@/components/craft/query-builder";
 import { Timeline, type TimelineItem } from "@/components/craft/timeline";
 import { LogStreamDemo } from "@/components/showcase/log-stream-demo";
@@ -293,6 +299,35 @@ const diffAfter = {
   roles: ["engineer", "admin"],
 };
 
+const METRIC_T0 = Date.UTC(2026, 5, 8, 12, 0, 0);
+const METRIC_STEP = 5 * 60 * 1000;
+const p95Values = [62, 68, 71, 95, 120, 88, 76, 70, 132, 110, 84, 72];
+const p50Values = [28, 30, 31, 35, 40, 33, 30, 29, 38, 36, 31, 30];
+
+const metricSeries: MetricSeries[] = [
+  {
+    color: "#a855f7",
+    key: "p95",
+    label: "p95",
+    points: p95Values.map((v, i) => ({ t: METRIC_T0 + i * METRIC_STEP, v })),
+  },
+  {
+    color: "#3b82f6",
+    key: "p50",
+    label: "p50",
+    points: p50Values.map((v, i) => ({ t: METRIC_T0 + i * METRIC_STEP, v })),
+  },
+];
+
+const metricThresholds: MetricThreshold[] = [
+  { label: "warning", severity: "warning", value: 90 },
+  { label: "critical", severity: "critical", value: 125 },
+];
+
+const metricAnnotations: MetricAnnotation[] = [
+  { description: "rolled out to prod", label: "deploy v1.4", t: METRIC_T0 + 8 * METRIC_STEP },
+];
+
 export const showcaseEntries: ShowcaseEntry[] = [
   {
     demo: <QueryBuilder defaultValue={queryDefault} fields={queryFields} />,
@@ -356,6 +391,21 @@ export const showcaseEntries: ShowcaseEntry[] = [
     registryName: "log-stream",
     slug: "log-stream",
     title: "Log Stream",
+  },
+  {
+    demo: (
+      <MetricChart
+        annotations={metricAnnotations}
+        series={metricSeries}
+        thresholds={metricThresholds}
+        unit="ms"
+      />
+    ),
+    description:
+      "An observability time-series chart with threshold lines, event annotations, breach shading, and a crosshair tooltip with a click-to-toggle legend.",
+    registryName: "metric-chart",
+    slug: "metric-chart",
+    title: "Metric Chart",
   },
 ];
 
