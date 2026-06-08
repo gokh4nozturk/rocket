@@ -38,6 +38,7 @@ export async function generateMetadata({
     title: entry.title,
     twitter: {
       card: "summary_large_image",
+      creator: siteConfig.author.twitter,
       description: entry.description,
       title: `${entry.title} — ${siteConfig.name}`,
     },

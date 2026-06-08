@@ -11,6 +11,8 @@ function readBaseUrl(): string {
 export const siteConfig = {
   author: {
     name: "Gökhan Öztürk",
+    /** Twitter/X handle, including the leading @. */
+    twitter: "@gokh4nozturk",
     url: "https://gozturk.dev",
   },
   description:
