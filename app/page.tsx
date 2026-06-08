@@ -1,4 +1,5 @@
 import { ComponentShowcase } from "@/components/showcase/component-showcase";
+import { ActivityFeed, type ActivityItem } from "@/components/ui/activity-feed";
 import { Timeline, type TimelineItem } from "@/components/ui/timeline";
 
 const timelineItems: TimelineItem[] = [
@@ -85,31 +86,90 @@ const timelineItems: TimelineItem[] = [
   },
 ];
 
+const min = (m: number) => new Date(Date.now() - m * 60_000);
+
+const activityItems: ActivityItem[] = [
+  {
+    action: "merged",
+    actor: {
+      avatarUrl: "https://avatars.githubusercontent.com/u/124599?v=4",
+      name: "Ada Lovelace",
+    },
+    attachment: { kind: "quote", text: "Single SVG path — no more seams between rows." },
+    id: "act-merge",
+    live: true,
+    target: "#42 Fix timeline connector",
+    time: min(2),
+    type: "merge",
+  },
+  {
+    action: "pushed 3 commits to",
+    actor: { name: "Linus Park" },
+    id: "act-commit",
+    target: "main",
+    time: min(48),
+    type: "commit",
+  },
+  {
+    action: "commented on",
+    actor: {
+      avatarUrl: "https://avatars.githubusercontent.com/u/810438?v=4",
+      name: "Grace Hopper",
+    },
+    attachment: {
+      href: "https://rocket.gozturk.dev",
+      kind: "link",
+      meta: "rocket.gozturk.dev",
+      text: "rocket — component registry",
+    },
+    id: "act-comment",
+    target: "#39 Docs site",
+    time: min(90),
+    type: "comment",
+  },
+  {
+    action: "starred",
+    actor: { name: "Margaret Hamilton" },
+    id: "act-star",
+    target: "gozturk/rocket",
+    time: min(60 * 26),
+    type: "star",
+  },
+  {
+    action: "deployed",
+    actor: { name: "Katherine Johnson" },
+    id: "act-deploy",
+    target: "production",
+    time: min(60 * 27),
+    type: "deploy",
+  },
+];
+
 export default function Home() {
   return (
-    <div className="container grid h-full min-h-[calc(100dvh-5rem)] items-start gap-12 divide-x-2 py-8 lg:grid-cols-[1fr_3fr_1fr]">
-      <aside>
-        <h1 className="font-medium text-foreground text-xl">shadcn registry</h1>
-      </aside>
-      <div className="flex w-full flex-col items-start gap-12">
-        <div>
-          <h1 className="font-medium text-foreground text-xl">rocket</h1>
-          <p className="mt-2 text-muted-foreground text-sm">
-            A small component library distributed as a shadcn registry.
-          </p>
-        </div>
-
-        <ComponentShowcase
-          description="A nested, collapsible event timeline with one continuous connector line."
-          name="timeline"
-          title="Timeline"
-        >
-          <Timeline items={timelineItems} />
-        </ComponentShowcase>
+    <div className="flex w-full flex-col items-start gap-12 py-12">
+      <div>
+        <h1 className="font-medium text-foreground text-xl">rocket</h1>
+        <p className="mt-2 text-muted-foreground text-sm">
+          A small component library distributed as a shadcn registry.
+        </p>
       </div>
-      <aside>
-        <h1 className="font-medium text-foreground text-xl">shadcn registry</h1>
-      </aside>
+
+      <ComponentShowcase
+        description="A nested, collapsible event timeline with one continuous connector line."
+        name="timeline"
+        title="Timeline"
+      >
+        <Timeline items={timelineItems} />
+      </ComponentShowcase>
+
+      <ComponentShowcase
+        description="An avatar-led activity feed with type badges, attachments, date grouping and a live indicator."
+        name="activity-feed"
+        title="Activity Feed"
+      >
+        <ActivityFeed items={activityItems} />
+      </ComponentShowcase>
     </div>
   );
 }

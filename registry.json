@@ -16,6 +16,20 @@
           "type": "registry:ui"
         }
       ]
+    },
+    {
+      "name": "activity-feed",
+      "type": "registry:ui",
+      "title": "Activity Feed",
+      "description": "An avatar-led activity feed with type badges, attachments, date grouping and a live indicator.",
+      "dependencies": ["lucide-react", "motion"],
+      "registryDependencies": ["avatar"],
+      "files": [
+        {
+          "path": "components/ui/activity-feed.tsx",
+          "type": "registry:ui"
+        }
+      ]
     }
   ]
 }
