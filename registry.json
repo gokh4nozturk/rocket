@@ -30,6 +30,20 @@
           "type": "registry:ui"
         }
       ]
+    },
+    {
+      "name": "comment-thread",
+      "type": "registry:ui",
+      "title": "Comment Thread",
+      "description": "A threaded comment discussion with depth-capped nesting, avatar rows, reactions, replies and collapsible subtrees.",
+      "dependencies": ["lucide-react", "motion"],
+      "registryDependencies": ["avatar"],
+      "files": [
+        {
+          "path": "components/craft/comment-thread.tsx",
+          "type": "registry:ui"
+        }
+      ]
     }
   ]
 }
