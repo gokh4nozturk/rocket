@@ -1,10 +1,16 @@
 "use client";
 
-import { ChevronRight, Copy, Search } from "lucide-react";
+import { ChevronRight, Copy, Search, X } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import type { ReactNode } from "react";
-import { useEffect, useMemo, useState } from "react";
-import { Input } from "@/components/ui/input";
+import { useEffect, useMemo, useRef, useState } from "react";
+import {
+  InputGroup,
+  InputGroupAddon,
+  InputGroupButton,
+  InputGroupInput,
+  InputGroupText,
+} from "@/components/ui/input-group";
 import { cn } from "@/lib/utils";
 
 export interface JsonInspectorProps {
@@ -435,6 +441,26 @@ export function JsonInspector({
     [parsed, openPaths, search],
   );
 
+  const searchRef = useRef<HTMLDivElement>(null);
+  const focusSearch = () => searchRef.current?.querySelector("input")?.focus();
+
+  // biome-ignore lint/correctness/useExhaustiveDependencies: false positive, we only want to bind this once when searchable is enabled
+  useEffect(() => {
+    if (!searchable) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key !== "/") return;
+      const el = document.activeElement;
+      const tag = el?.tagName;
+      if (tag === "INPUT" || tag === "TEXTAREA" || (el as HTMLElement | null)?.isContentEditable) {
+        return;
+      }
+      e.preventDefault();
+      focusSearch();
+    };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [searchable]);
+
   if (!parsed.ok) {
     return (
       <div
@@ -465,20 +491,46 @@ export function JsonInspector({
     <div className={cn("rounded-lg border border-border bg-muted/20 font-mono text-xs", className)}>
       <div className="flex items-center gap-2 border-border border-b px-2 py-1.5">
         {searchable ? (
-          <div className="relative flex-1">
-            <Search className="absolute top-2 left-2 size-3.5 text-muted-foreground" />
-            <Input
-              className="h-7 pl-7 font-sans text-xs"
+          <InputGroup className="h-7 flex-1 font-sans" ref={searchRef}>
+            <InputGroupAddon align="inline-start">
+              <Search className="size-3.5" />
+            </InputGroupAddon>
+            <InputGroupInput
+              className="text-xs"
               onChange={(e) => setQuery(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === "Escape") {
+                  setQuery("");
+                  e.currentTarget.blur();
+                }
+              }}
               placeholder="Search keys or values…"
               value={query}
             />
-          </div>
-        ) : null}
-        {search.active ? (
-          <span className="shrink-0 font-sans text-muted-foreground text-xs">
-            {search.matches} match{search.matches === 1 ? "" : "es"}
-          </span>
+            <InputGroupAddon align="inline-end">
+              {search.active ? (
+                <InputGroupText className="text-xs">
+                  {search.matches} match{search.matches === 1 ? "" : "es"}
+                </InputGroupText>
+              ) : null}
+              {query ? (
+                <InputGroupButton
+                  aria-label="Clear search"
+                  onClick={() => {
+                    setQuery("");
+                    focusSearch();
+                  }}
+                  size="icon-xs"
+                >
+                  <X className="size-3.5" />
+                </InputGroupButton>
+              ) : (
+                <kbd className="rounded border border-border bg-muted px-1 text-[10px] text-muted-foreground">
+                  /
+                </kbd>
+              )}
+            </InputGroupAddon>
+          </InputGroup>
         ) : null}
         <div className="ml-auto flex shrink-0 gap-1 font-sans">
           <button

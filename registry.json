@@ -65,7 +65,7 @@
       "title": "JSON Inspector",
       "description": "A collapsible, searchable, code-editor-style JSON tree viewer with type coloring, line numbers, match highlighting and per-node path/value copy.",
       "dependencies": ["lucide-react", "motion"],
-      "registryDependencies": ["input"],
+      "registryDependencies": ["input-group"],
       "files": [
         {
           "path": "components/craft/json-inspector.tsx",
