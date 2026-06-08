@@ -2,6 +2,7 @@ import { ActivityFeed, type ActivityItem } from "@/components/craft/activity-fee
 import { type CommentNode, CommentThread } from "@/components/craft/comment-thread";
 import { Timeline, type TimelineItem } from "@/components/craft/timeline";
 import { ComponentShowcase } from "@/components/showcase/component-showcase";
+import { getComponentSource } from "@/lib/registry-source";
 
 const timelineItems: TimelineItem[] = [
   {
@@ -199,7 +200,13 @@ const comments: CommentNode[] = [
   },
 ];
 
-export default function Home() {
+export default async function Home() {
+  const [timelineSource, activityFeedSource, commentThreadSource] = await Promise.all([
+    getComponentSource("timeline"),
+    getComponentSource("activity-feed"),
+    getComponentSource("comment-thread"),
+  ]);
+
   return (
     <div className="flex w-full flex-col items-start gap-12 py-12">
       <div>
@@ -210,7 +217,9 @@ export default function Home() {
       </div>
 
       <ComponentShowcase
+        code={timelineSource.code}
         description="A nested, collapsible event timeline with one continuous connector line."
+        highlightedCode={timelineSource.html}
         name="timeline"
         title="Timeline"
       >
@@ -218,7 +227,9 @@ export default function Home() {
       </ComponentShowcase>
 
       <ComponentShowcase
+        code={activityFeedSource.code}
         description="An avatar-led activity feed with type badges, attachments, date grouping and a live indicator."
+        highlightedCode={activityFeedSource.html}
         name="activity-feed"
         title="Activity Feed"
       >
@@ -226,7 +237,9 @@ export default function Home() {
       </ComponentShowcase>
 
       <ComponentShowcase
+        code={commentThreadSource.code}
         description="A threaded comment discussion with depth-capped nesting, avatar rows, reactions, replies and collapsible subtrees."
+        highlightedCode={commentThreadSource.html}
         name="comment-thread"
         title="Comment Thread"
       >

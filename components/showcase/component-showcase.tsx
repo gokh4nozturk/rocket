@@ -2,11 +2,20 @@
 
 import { Check, Copy } from "lucide-react";
 import { type ReactNode, useState } from "react";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { cn } from "@/lib/utils";
 
 const REGISTRY_URL = process.env.NEXT_PUBLIC_REGISTRY_URL ?? "https://rocket.gozturk.dev";
 
-function CopyButton({ value }: { value: string }) {
+function CopyButton({
+  value,
+  label,
+  className,
+}: {
+  value: string;
+  label: string;
+  className?: string;
+}) {
   const [copied, setCopied] = useState(false);
 
   const copy = async () => {
@@ -21,8 +30,11 @@ function CopyButton({ value }: { value: string }) {
 
   return (
     <button
-      aria-label="Copy install command"
-      className="shrink-0 text-muted-foreground transition-colors hover:text-foreground"
+      aria-label={label}
+      className={cn(
+        "shrink-0 text-muted-foreground transition-colors hover:text-foreground",
+        className,
+      )}
       onClick={copy}
       type="button"
     >
@@ -33,18 +45,24 @@ function CopyButton({ value }: { value: string }) {
 
 /**
  * Doc-style showcase card: title, description, a copyable shadcn install command
- * and a live preview area.
+ * and Preview / Code tabs (live render + highlighted source).
  */
 export function ComponentShowcase({
   title,
   description,
   name,
+  code,
+  highlightedCode,
   children,
   className,
 }: {
   title: string;
   description?: string;
   name: string;
+  /** Raw component source, used for the Code tab's copy button. */
+  code: string;
+  /** shiki-highlighted HTML of the component source. */
+  highlightedCode: string;
   children: ReactNode;
   className?: string;
 }) {
@@ -59,10 +77,31 @@ export function ComponentShowcase({
         <code className="overflow-x-auto whitespace-nowrap font-mono text-foreground text-xs">
           {command}
         </code>
-        <CopyButton value={command} />
+        <CopyButton label="Copy install command" value={command} />
       </div>
 
-      <div className="mt-4 rounded-xl border bg-card p-5">{children}</div>
+      <Tabs className="mt-4" defaultValue="preview">
+        <TabsList>
+          <TabsTrigger value="preview">Preview</TabsTrigger>
+          <TabsTrigger value="code">Code</TabsTrigger>
+        </TabsList>
+
+        <TabsContent value="preview">
+          <div className="rounded-xl border bg-card p-5">{children}</div>
+        </TabsContent>
+
+        <TabsContent value="code">
+          <div className="relative rounded-xl border bg-card">
+            <CopyButton
+              className="absolute top-3 right-3 z-10 rounded-md bg-card/80 p-1 backdrop-blur"
+              label="Copy component source"
+              value={code}
+            />
+            {/* biome-ignore lint/security/noDangerouslySetInnerHtml: shiki output is trusted, generated at build time */}
+            <div className="shiki-block" dangerouslySetInnerHTML={{ __html: highlightedCode }} />
+          </div>
+        </TabsContent>
+      </Tabs>
     </section>
   );
 }

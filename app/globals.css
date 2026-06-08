@@ -217,3 +217,31 @@
     @apply font-sans;
   }
 }
+
+/* shiki code blocks — dual light/dark theming via CSS variables */
+.shiki-block {
+  @apply overflow-hidden rounded-xl;
+}
+.shiki-block .shiki {
+  margin: 0;
+  max-height: 30rem;
+  overflow: auto;
+  padding: 1rem;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.8125rem;
+  line-height: 1.6;
+}
+.shiki-block .shiki,
+.shiki-block .shiki span {
+  color: var(--shiki-light);
+}
+.shiki-block .shiki {
+  background-color: var(--shiki-light-bg);
+}
+.dark .shiki-block .shiki,
+.dark .shiki-block .shiki span {
+  color: var(--shiki-dark);
+}
+.dark .shiki-block .shiki {
+  background-color: var(--shiki-dark-bg);
+}
