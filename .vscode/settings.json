@@ -1,9 +1,26 @@
 {
   "editor.codeActionsOnSave": {
+    "source.addMissingImports.ts": "always",
     "source.fixAll.biome": "explicit",
-    "source.sortImports": "always",
+    "source.fixAll.sortJSON": "always",
+    "source.fixAll.ts": "always",
     "source.organizeImports.biome": "always",
-    "source.removeUnusedImports": "always"
+    "source.removeUnusedImports": "always",
+    "source.sort.json": "always",
+    "source.sortImports": "always"
   },
-  "editor.defaultFormatter": "biomejs.biome"
+  "editor.defaultFormatter": "biomejs.biome",
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+    "vue",
+    "html",
+    "markdown",
+    "json",
+    "jsonc",
+    "yaml"
+  ],
+  "tailwindCSS.lint.suggestCanonicalClasses": "ignore"
 }
