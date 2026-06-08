@@ -42,3 +42,5 @@ next-env.d.ts
 
 # generated registry items (built during `pnpm build`)
 /public/r
+
+.playwright*

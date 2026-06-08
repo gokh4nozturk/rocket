@@ -86,8 +86,8 @@ function Calendar({
           "relative isolate z-0 rounded-l-(--cell-radius) bg-muted after:absolute after:inset-y-0 after:right-0 after:w-4 after:bg-muted",
           defaultClassNames.range_start,
         ),
+        month_grid: "w-full border-collapse",
         root: cn("w-fit", defaultClassNames.root),
-        table: "w-full border-collapse",
         today: cn(
           "rounded-(--cell-radius) bg-muted text-foreground data-[selected=true]:rounded-none",
           defaultClassNames.today,
