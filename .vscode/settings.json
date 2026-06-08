@@ -10,17 +10,5 @@
     "source.sortImports": "always"
   },
   "editor.defaultFormatter": "biomejs.biome",
-  "eslint.validate": [
-    "javascript",
-    "javascriptreact",
-    "typescript",
-    "typescriptreact",
-    "vue",
-    "html",
-    "markdown",
-    "json",
-    "jsonc",
-    "yaml"
-  ],
   "tailwindCSS.lint.suggestCanonicalClasses": "ignore"
 }
