@@ -10,6 +10,7 @@ import {
 } from "@/components/craft/metric-chart";
 import { QueryBuilder, type QueryField, type QueryGroup } from "@/components/craft/query-builder";
 import { Timeline, type TimelineItem } from "@/components/craft/timeline";
+import { type TraceSpan, TraceWaterfall } from "@/components/craft/trace-waterfall";
 import { LogStreamDemo } from "@/components/showcase/log-stream-demo";
 import { StatTileDemo } from "@/components/showcase/stat-tile-demo";
 
@@ -328,6 +329,54 @@ const metricAnnotations: MetricAnnotation[] = [
   { description: "rolled out to prod", label: "deploy v1.4", t: METRIC_T0 + 8 * METRIC_STEP },
 ];
 
+const traceSpans: TraceSpan[] = [
+  { duration: 320, id: "root", name: "GET /checkout", service: "gateway", start: 0 },
+  { duration: 40, id: "auth", name: "auth.verify", parentId: "root", service: "auth", start: 5 },
+  {
+    duration: 90,
+    id: "orders",
+    name: "db.query orders",
+    parentId: "root",
+    service: "postgres",
+    start: 50,
+  },
+  { duration: 8, id: "cache", name: "cache.get", parentId: "orders", service: "redis", start: 52 },
+  {
+    duration: 70,
+    id: "rows",
+    name: "scan rows",
+    parentId: "orders",
+    service: "postgres",
+    start: 62,
+  },
+  {
+    duration: 160,
+    id: "pay",
+    name: "payment.charge",
+    parentId: "root",
+    service: "stripe",
+    start: 150,
+    status: "error",
+  },
+  {
+    duration: 150,
+    id: "pay-http",
+    name: "POST api.stripe.com",
+    parentId: "pay",
+    service: "stripe",
+    start: 152,
+    status: "error",
+  },
+  {
+    duration: 6,
+    id: "notify",
+    name: "queue.publish",
+    parentId: "root",
+    service: "kafka",
+    start: 312,
+  },
+];
+
 export const showcaseEntries: ShowcaseEntry[] = [
   {
     demo: <LogStreamDemo />,
@@ -406,6 +455,14 @@ export const showcaseEntries: ShowcaseEntry[] = [
     registryName: "metric-chart",
     slug: "metric-chart",
     title: "Metric Chart",
+  },
+  {
+    demo: <TraceWaterfall spans={traceSpans} />,
+    description:
+      "A distributed-trace waterfall: an indented span tree beside time-positioned duration bars, with a time ruler, service colors, error highlighting, collapsible subtrees and hover detail.",
+    registryName: "trace-waterfall",
+    slug: "trace-waterfall",
+    title: "Trace Waterfall",
   },
 ];
 

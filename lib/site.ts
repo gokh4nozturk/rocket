@@ -38,6 +38,8 @@ export const siteConfig = {
     "live tail",
     "metric chart",
     "time series",
+    "trace waterfall",
+    "distributed tracing",
     "ui components",
   ],
   name: "rocket",
