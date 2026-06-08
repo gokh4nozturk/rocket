@@ -330,6 +330,14 @@ const metricAnnotations: MetricAnnotation[] = [
 
 export const showcaseEntries: ShowcaseEntry[] = [
   {
+    demo: <LogStreamDemo />,
+    description:
+      "A live-tail log stream with level filters and counts, message search, auto-scroll with a 'new lines' indicator, and expandable rows for structured detail.",
+    registryName: "log-stream",
+    slug: "log-stream",
+    title: "Log Stream",
+  },
+  {
     demo: <QueryBuilder defaultValue={queryDefault} fields={queryFields} />,
     description:
       "A visual, nested AND/OR query builder with a typed field schema and a read-only SQL/JSON live preview with copy.",
@@ -383,14 +391,6 @@ export const showcaseEntries: ShowcaseEntry[] = [
     registryName: "diff-viewer",
     slug: "diff-viewer",
     title: "Diff Viewer",
-  },
-  {
-    demo: <LogStreamDemo />,
-    description:
-      "A live-tail log stream with level filters and counts, message search, auto-scroll with a 'new lines' indicator, and expandable rows for structured detail.",
-    registryName: "log-stream",
-    slug: "log-stream",
-    title: "Log Stream",
   },
   {
     demo: (
