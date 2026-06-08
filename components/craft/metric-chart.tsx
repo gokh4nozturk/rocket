@@ -202,7 +202,7 @@ export function MetricChart({
                 label={{
                   fill: SEVERITY_COLOR[th.severity ?? "warning"],
                   fontSize: 10,
-                  position: "right",
+                  position: "insideTopRight",
                   value: th.label ?? `${th.value}${unit}`,
                 }}
                 stroke={SEVERITY_COLOR[th.severity ?? "warning"]}
