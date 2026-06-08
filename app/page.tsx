@@ -87,7 +87,7 @@ const timelineItems: TimelineItem[] = [
 
 export default function Home() {
   return (
-    <div className="container grid h-full min-h-[calc(100dvh-5rem)] items-start gap-12 divide-x-2 bg-red-400 py-8 lg:grid-cols-[1fr_3fr_1fr]">
+    <div className="container grid h-full min-h-[calc(100dvh-5rem)] items-start gap-12 divide-x-2 py-8 lg:grid-cols-[1fr_3fr_1fr]">
       <aside>
         <h1 className="font-medium text-foreground text-xl">shadcn registry</h1>
       </aside>
