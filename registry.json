@@ -240,6 +240,20 @@
           "type": "registry:ui"
         }
       ]
+    },
+    {
+      "name": "schema-diagram",
+      "type": "registry:ui",
+      "title": "Schema Diagram",
+      "description": "An ER / schema diagram: table cards with typed columns and PK/FK/unique/index badges, drawn FK→PK relationship lines with cardinality markers, relationship hover-highlight and collapsible tables.",
+      "dependencies": ["lucide-react"],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/craft/schema-diagram.tsx",
+          "type": "registry:ui"
+        }
+      ]
     }
   ]
 }

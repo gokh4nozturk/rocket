@@ -14,6 +14,7 @@ import {
   type MetricThreshold,
 } from "@/components/craft/metric-chart";
 import { QueryBuilder, type QueryField, type QueryGroup } from "@/components/craft/query-builder";
+import { SchemaDiagram, type SchemaTable } from "@/components/craft/schema-diagram";
 import { type DayStatus, type Service, StatusGrid } from "@/components/craft/status-grid";
 import { Timeline, type TimelineItem } from "@/components/craft/timeline";
 import { type TraceSpan, TraceWaterfall } from "@/components/craft/trace-waterfall";
@@ -781,6 +782,65 @@ const gridRows: Record<string, unknown>[] = [
   },
 ];
 
+const schemaTables: SchemaTable[] = [
+  {
+    columns: [
+      { name: "id", pk: true, type: "uuid" },
+      { name: "email", nullable: false, type: "varchar(255)", unique: true },
+      { name: "name", nullable: false, type: "varchar(120)" },
+      { name: "created_at", nullable: false, type: "timestamptz" },
+    ],
+    name: "users",
+  },
+  {
+    columns: [
+      { name: "id", pk: true, type: "uuid" },
+      {
+        fk: { column: "id", table: "users" },
+        index: true,
+        name: "user_id",
+        nullable: false,
+        type: "uuid",
+      },
+      { name: "status", nullable: false, type: "varchar(20)" },
+      { name: "total", nullable: false, type: "numeric(10,2)" },
+      { name: "created_at", nullable: false, type: "timestamptz" },
+    ],
+    name: "orders",
+  },
+  {
+    columns: [
+      { name: "id", pk: true, type: "uuid" },
+      { name: "sku", nullable: false, type: "varchar(64)", unique: true },
+      { name: "name", nullable: false, type: "varchar(200)" },
+      { name: "price", nullable: false, type: "numeric(10,2)" },
+    ],
+    name: "products",
+  },
+  {
+    columns: [
+      { name: "id", pk: true, type: "uuid" },
+      {
+        fk: { column: "id", table: "orders" },
+        index: true,
+        name: "order_id",
+        nullable: false,
+        type: "uuid",
+      },
+      {
+        fk: { column: "id", table: "products" },
+        index: true,
+        name: "product_id",
+        nullable: false,
+        type: "uuid",
+      },
+      { name: "quantity", nullable: false, type: "int" },
+      { name: "unit_price", nullable: false, type: "numeric(10,2)" },
+    ],
+    name: "order_items",
+  },
+];
+
 export const showcaseEntries: ShowcaseEntry[] = [
   {
     demo: <LogStreamDemo />,
@@ -923,6 +983,14 @@ export const showcaseEntries: ShowcaseEntry[] = [
     registryName: "data-grid",
     slug: "data-grid",
     title: "Data Grid",
+  },
+  {
+    demo: <SchemaDiagram tables={schemaTables} />,
+    description:
+      "An ER / schema diagram: table cards with typed columns and PK/FK/unique/index badges, drawn FK→PK relationship lines with cardinality markers, relationship hover-highlight and collapsible tables.",
+    registryName: "schema-diagram",
+    slug: "schema-diagram",
+    title: "Schema Diagram",
   },
 ];
 

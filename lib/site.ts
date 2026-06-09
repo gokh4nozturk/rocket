@@ -54,6 +54,8 @@ export const siteConfig = {
     "pipeline status",
     "data grid",
     "data table",
+    "schema diagram",
+    "er diagram",
     "ui components",
   ],
   name: "rocket",
