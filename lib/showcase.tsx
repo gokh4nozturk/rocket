@@ -15,6 +15,7 @@ import {
   type MetricThreshold,
 } from "@/components/craft/metric-chart";
 import { QueryBuilder, type QueryField, type QueryGroup } from "@/components/craft/query-builder";
+import { type HttpRequest, RequestInspector } from "@/components/craft/request-inspector";
 import { type ResourceMetric, ResourceMonitor } from "@/components/craft/resource-monitor";
 import { SchemaDiagram, type SchemaTable } from "@/components/craft/schema-diagram";
 import { type DayStatus, type Service, StatusGrid } from "@/components/craft/status-grid";
@@ -885,6 +886,40 @@ const resourceMetrics: ResourceMetric[] = [
   { critical: 110, id: "network", label: "Network", max: 125, unit: "MB/s", value: 34, warn: 80 },
 ];
 
+const demoRequest: HttpRequest = {
+  method: "POST",
+  requestBody: JSON.stringify({
+    currency: "usd",
+    customer_id: "cus_12af",
+    items: [{ qty: 2, sku: "TSHIRT-M" }],
+  }),
+  requestHeaders: {
+    accept: "application/json",
+    authorization: "Bearer sk_live_••••4f9a",
+    "content-type": "application/json",
+    "user-agent": "acme-sdk/2.4.0",
+  },
+  responseBody: JSON.stringify({
+    created_at: "2026-06-09T08:00:00Z",
+    currency: "usd",
+    id: "ord_1042",
+    items: [{ price: 2999, qty: 2, sku: "TSHIRT-M" }],
+    status: "created",
+    total: 5998,
+  }),
+  responseHeaders: {
+    "cache-control": "no-store",
+    "content-type": "application/json; charset=utf-8",
+    "x-ratelimit-remaining": "98",
+    "x-request-id": "req_8Kqd3fz1",
+  },
+  size: 842,
+  status: 201,
+  statusText: "Created",
+  timing: { blocked: 2, connect: 18, dns: 12, download: 9, ssl: 24, wait: 142 },
+  url: "https://api.acme.io/v1/orders?expand=items&currency=usd",
+};
+
 export const showcaseEntries: ShowcaseEntry[] = [
   {
     demo: <LogStreamDemo />,
@@ -1059,6 +1094,14 @@ export const showcaseEntries: ShowcaseEntry[] = [
     registryName: "resource-monitor",
     slug: "resource-monitor",
     title: "Resource Monitor",
+  },
+  {
+    demo: <RequestInspector request={demoRequest} />,
+    description:
+      "A DevTools-style HTTP request inspector: a method/url/status summary with Headers, Payload, Timing-waterfall and Response (JSON-formatted) tabs, plus copy buttons.",
+    registryName: "request-inspector",
+    slug: "request-inspector",
+    title: "Request Inspector",
   },
 ];
 

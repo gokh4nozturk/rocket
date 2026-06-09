@@ -62,6 +62,8 @@ export const siteConfig = {
     "dag",
     "resource monitor",
     "gauge",
+    "request inspector",
+    "http",
     "ui components",
   ],
   name: "rocket",

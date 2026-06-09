@@ -296,6 +296,20 @@
           "type": "registry:ui"
         }
       ]
+    },
+    {
+      "name": "request-inspector",
+      "type": "registry:ui",
+      "title": "Request Inspector",
+      "description": "A DevTools-style HTTP request inspector: a method/url/status summary with Headers, Payload, Timing-waterfall and Response (JSON-formatted) tabs, plus copy buttons.",
+      "dependencies": ["lucide-react"],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/craft/request-inspector.tsx",
+          "type": "registry:ui"
+        }
+      ]
     }
   ]
 }
