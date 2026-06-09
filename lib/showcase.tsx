@@ -1,4 +1,5 @@
 import { ActivityFeed, type ActivityItem } from "@/components/craft/activity-feed";
+import { type Alert, AlertFeed } from "@/components/craft/alert-feed";
 import { type AuditEntry, AuditTrail } from "@/components/craft/audit-trail";
 import { type Cohort, CohortHeatmap } from "@/components/craft/cohort-heatmap";
 import { type CommentNode, CommentThread } from "@/components/craft/comment-thread";
@@ -555,6 +556,56 @@ const auditEntries: AuditEntry[] = [
   },
 ];
 
+const ALERT_BASE = Date.UTC(2026, 5, 9, 8, 0, 0);
+const ALERT_MIN = 60_000;
+
+const alertItems: Alert[] = [
+  {
+    description: "5xx rate 8.4% (threshold 1%)",
+    id: "al1",
+    severity: "critical",
+    source: "payments",
+    startedAt: ALERT_BASE - 12 * ALERT_MIN,
+    status: "firing",
+    title: "High error rate on /checkout",
+  },
+  {
+    description: "98/100 connections in use",
+    id: "al3",
+    severity: "critical",
+    source: "postgres",
+    startedAt: ALERT_BASE - 4 * ALERT_MIN,
+    status: "firing",
+    title: "Database connections saturated",
+  },
+  {
+    description: "p95 480ms (threshold 300ms)",
+    id: "al2",
+    severity: "warning",
+    source: "api-gateway",
+    startedAt: ALERT_BASE - 47 * ALERT_MIN,
+    status: "acknowledged",
+    title: "p95 latency elevated",
+  },
+  {
+    id: "al4",
+    severity: "info",
+    source: "ci",
+    startedAt: ALERT_BASE - 2 * ALERT_MIN,
+    status: "firing",
+    title: "Deploy started: rocket@1.4.0",
+  },
+  {
+    description: "Recovered after log rotation",
+    id: "al5",
+    severity: "warning",
+    source: "workers",
+    startedAt: ALERT_BASE - 180 * ALERT_MIN,
+    status: "resolved",
+    title: "Disk space low on worker-3",
+  },
+];
+
 export const showcaseEntries: ShowcaseEntry[] = [
   {
     demo: <LogStreamDemo />,
@@ -673,6 +724,14 @@ export const showcaseEntries: ShowcaseEntry[] = [
     registryName: "audit-trail",
     slug: "audit-trail",
     title: "Audit Trail",
+  },
+  {
+    demo: <AlertFeed alerts={alertItems} />,
+    description:
+      "An interactive alert/incident feed: severity-grouped rows with acknowledge/resolve actions, a firing-count summary banner, severity/status filters, relative duration and a collapsible resolved section.",
+    registryName: "alert-feed",
+    slug: "alert-feed",
+    title: "Alert Feed",
   },
 ];
 

@@ -48,6 +48,8 @@ export const siteConfig = {
     "retention",
     "audit trail",
     "changelog",
+    "alert feed",
+    "incident",
     "ui components",
   ],
   name: "rocket",

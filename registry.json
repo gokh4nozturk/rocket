@@ -198,6 +198,20 @@
           "type": "registry:ui"
         }
       ]
+    },
+    {
+      "name": "alert-feed",
+      "type": "registry:ui",
+      "title": "Alert Feed",
+      "description": "An interactive alert/incident feed: severity-grouped rows with acknowledge/resolve actions, a firing-count summary banner, severity/status filters, relative duration and a collapsible resolved section.",
+      "dependencies": ["lucide-react", "motion"],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/craft/alert-feed.tsx",
+          "type": "registry:ui"
+        }
+      ]
     }
   ]
 }
