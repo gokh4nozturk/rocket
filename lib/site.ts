@@ -64,6 +64,8 @@ export const siteConfig = {
     "gauge",
     "request inspector",
     "http",
+    "data quality",
+    "data validation",
     "ui components",
   ],
   name: "rocket",

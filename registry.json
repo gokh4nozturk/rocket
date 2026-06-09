@@ -310,6 +310,20 @@
           "type": "registry:ui"
         }
       ]
+    },
+    {
+      "name": "data-quality",
+      "type": "registry:ui",
+      "title": "Data Quality",
+      "description": "A data-quality / test report: validation checks (not_null, unique, freshness, range…) with pass/warn/fail status, a summary banner with pass-rate, status filters and expandable failure detail.",
+      "dependencies": ["lucide-react", "motion"],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/craft/data-quality.tsx",
+          "type": "registry:ui"
+        }
+      ]
     }
   ]
 }

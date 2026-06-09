@@ -5,6 +5,7 @@ import { type Cohort, CohortHeatmap } from "@/components/craft/cohort-heatmap";
 import { type CommentNode, CommentThread } from "@/components/craft/comment-thread";
 import { type Column, DataGrid } from "@/components/craft/data-grid";
 import { DataLineage, type LineageEdge, type LineageNode } from "@/components/craft/data-lineage";
+import { DataQuality, type QualityCheck } from "@/components/craft/data-quality";
 import { DiffViewer } from "@/components/craft/diff-viewer";
 import { JsonInspector } from "@/components/craft/json-inspector";
 import { LatencyHistogram } from "@/components/craft/latency-histogram";
@@ -920,6 +921,72 @@ const demoRequest: HttpRequest = {
   url: "https://api.acme.io/v1/orders?expand=items&currency=usd",
 };
 
+const qualityChecks: QualityCheck[] = [
+  {
+    column: "id",
+    id: "c1",
+    kind: "unique",
+    name: "unique",
+    status: "pass",
+    threshold: "0 dupes",
+    value: "0",
+  },
+  {
+    column: "email",
+    id: "c2",
+    kind: "not_null",
+    message: "1,929 of 482,300 rows have a null email (0.4%); expected 0.",
+    name: "not_null",
+    status: "fail",
+    threshold: "0%",
+    value: "0.4%",
+  },
+  {
+    column: "email",
+    id: "c3",
+    kind: "custom",
+    message: "31 emails fail the RFC 5322 format check.",
+    name: "email format",
+    status: "warn",
+    value: "31 invalid",
+  },
+  {
+    column: "total",
+    id: "c4",
+    kind: "range",
+    name: "range",
+    status: "pass",
+    threshold: "0–100000",
+  },
+  {
+    column: "created_at",
+    id: "c5",
+    kind: "freshness",
+    message: "Most recent row is 26h old; the freshness SLA is 24h.",
+    name: "freshness",
+    status: "fail",
+    threshold: "< 24h",
+    value: "26h",
+  },
+  {
+    column: "status",
+    id: "c6",
+    kind: "accepted_values",
+    name: "accepted_values",
+    status: "pass",
+    threshold: "pending|shipped|refunded",
+  },
+  {
+    id: "c7",
+    kind: "row_count",
+    message: "Row count 482,300 is below the expected minimum of 500,000.",
+    name: "row_count",
+    status: "warn",
+    threshold: "≥ 500,000",
+    value: "482,300",
+  },
+];
+
 export const showcaseEntries: ShowcaseEntry[] = [
   {
     demo: <LogStreamDemo />,
@@ -1102,6 +1169,14 @@ export const showcaseEntries: ShowcaseEntry[] = [
     registryName: "request-inspector",
     slug: "request-inspector",
     title: "Request Inspector",
+  },
+  {
+    demo: <DataQuality checks={qualityChecks} dataset="orders" rows={482300} />,
+    description:
+      "A data-quality / test report: validation checks (not_null, unique, freshness, range…) with pass/warn/fail status, a summary banner with pass-rate, status filters and expandable failure detail.",
+    registryName: "data-quality",
+    slug: "data-quality",
+    title: "Data Quality",
   },
 ];
 
