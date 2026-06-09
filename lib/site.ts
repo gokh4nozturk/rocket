@@ -66,6 +66,8 @@ export const siteConfig = {
     "http",
     "data quality",
     "data validation",
+    "treemap",
+    "storage map",
     "ui components",
   ],
   name: "rocket",

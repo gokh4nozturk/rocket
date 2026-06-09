@@ -22,6 +22,7 @@ import { SchemaDiagram, type SchemaTable } from "@/components/craft/schema-diagr
 import { type DayStatus, type Service, StatusGrid } from "@/components/craft/status-grid";
 import { Timeline, type TimelineItem } from "@/components/craft/timeline";
 import { type TraceSpan, TraceWaterfall } from "@/components/craft/trace-waterfall";
+import { Treemap, type TreemapNode } from "@/components/craft/treemap";
 import { DataFreshnessDemo } from "@/components/showcase/data-freshness-demo";
 import { LogStreamDemo } from "@/components/showcase/log-stream-demo";
 import { SqlConsoleDemo } from "@/components/showcase/sql-console-demo";
@@ -987,6 +988,18 @@ const qualityChecks: QualityCheck[] = [
   },
 ];
 
+const storageNodes: TreemapNode[] = [
+  { category: "raw", id: "events_raw", label: "events_raw", value: 310 },
+  { category: "logs", id: "logs", label: "logs", value: 156 },
+  { category: "public", id: "order_items", label: "order_items", value: 124 },
+  { category: "raw", id: "sessions", label: "sessions", value: 95 },
+  { category: "public", id: "orders", label: "orders", value: 88 },
+  { category: "logs", id: "metrics", label: "metrics", value: 64 },
+  { category: "public", id: "users", label: "users", value: 42 },
+  { category: "logs", id: "audit_log", label: "audit_log", value: 22 },
+  { category: "public", id: "products", label: "products", value: 18 },
+];
+
 export const showcaseEntries: ShowcaseEntry[] = [
   {
     demo: <LogStreamDemo />,
@@ -1177,6 +1190,14 @@ export const showcaseEntries: ShowcaseEntry[] = [
     registryName: "data-quality",
     slug: "data-quality",
     title: "Data Quality",
+  },
+  {
+    demo: <Treemap nodes={storageNodes} title="Storage by table" unit="GB" />,
+    description:
+      "A squarified treemap: value-proportional nested rectangles colored by category, with a legend and hover detail (value, % of total). Pure computed layout.",
+    registryName: "treemap",
+    slug: "treemap",
+    title: "Treemap",
   },
 ];
 

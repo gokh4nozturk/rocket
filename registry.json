@@ -324,6 +324,20 @@
           "type": "registry:ui"
         }
       ]
+    },
+    {
+      "name": "treemap",
+      "type": "registry:ui",
+      "title": "Treemap",
+      "description": "A squarified treemap: value-proportional nested rectangles colored by category, with a legend and hover detail (value, % of total). Pure computed layout.",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/craft/treemap.tsx",
+          "type": "registry:ui"
+        }
+      ]
     }
   ]
 }
