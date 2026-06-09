@@ -17,7 +17,6 @@ import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
   DropdownMenuContent,
-  DropdownMenuLabel,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
@@ -302,7 +301,9 @@ export function DataGrid({
                 {selectedVals.size > 0 ? ` (${selectedVals.size})` : ""}
               </DropdownMenuTrigger>
               <DropdownMenuContent align="start">
-                <DropdownMenuLabel>{col.label}</DropdownMenuLabel>
+                <div className="px-1.5 py-1 font-medium text-muted-foreground text-xs">
+                  {col.label}
+                </div>
                 {values.map((v) => (
                   <DropdownMenuCheckboxItem
                     checked={selectedVals.has(v.value)}
@@ -326,7 +327,9 @@ export function DataGrid({
             Columns
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
-            <DropdownMenuLabel>Toggle columns</DropdownMenuLabel>
+            <div className="px-1.5 py-1 font-medium text-muted-foreground text-xs">
+              Toggle columns
+            </div>
             {columns.map((col) => (
               <DropdownMenuCheckboxItem
                 checked={!hiddenCols.has(col.key)}
