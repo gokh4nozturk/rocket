@@ -1,6 +1,6 @@
 "use client";
 
-import { ChevronDown, ChevronRight, KeyRound, Link2, Table2 } from "lucide-react";
+import { ChevronDown, ChevronRight, GripVertical, KeyRound, Link2, Table2 } from "lucide-react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 
@@ -37,6 +37,11 @@ interface Line {
   d: string;
   sourceTable: string;
   targetTable: string;
+}
+
+interface Point {
+  x: number;
+  y: number;
 }
 
 function clamp(n: number, lo: number, hi: number): number {
@@ -85,14 +90,24 @@ function TableCard({
   table,
   collapsed,
   dim,
+  dragging,
+  style,
   onToggle,
   onHover,
+  onGripDown,
+  onGripMove,
+  onGripUp,
 }: {
   table: SchemaTable;
   collapsed: boolean;
   dim: boolean;
+  dragging: boolean;
+  style?: React.CSSProperties;
   onToggle: () => void;
   onHover: (name: string | null) => void;
+  onGripDown: (e: React.PointerEvent) => void;
+  onGripMove: (e: React.PointerEvent) => void;
+  onGripUp: (e: React.PointerEvent) => void;
 }) {
   const visibleCols = collapsed ? table.columns.filter((c) => c.pk || c.fk) : table.columns;
   const hiddenCount = table.columns.length - visibleCols.length;
@@ -100,26 +115,41 @@ function TableCard({
     // biome-ignore lint/a11y/noStaticElementInteractions: hover only drives a visual relationship highlight
     <div
       className={cn(
-        "relative w-56 overflow-hidden rounded-lg border border-border bg-background shadow-sm transition-opacity",
+        "w-56 overflow-hidden rounded-lg border border-border bg-background shadow-sm transition-opacity",
         dim && "opacity-20",
+        dragging && "z-20 shadow-lg ring-1 ring-foreground/20",
       )}
       data-table={table.name}
       onMouseEnter={() => onHover(table.name)}
       onMouseLeave={() => onHover(null)}
+      style={style}
     >
-      <button
-        className="flex w-full items-center gap-1.5 border-border border-b bg-muted/40 px-2.5 py-1.5 text-left font-semibold transition-colors hover:bg-muted"
-        onClick={onToggle}
-        type="button"
-      >
-        {collapsed ? (
-          <ChevronRight className="size-3.5 shrink-0" />
-        ) : (
-          <ChevronDown className="size-3.5 shrink-0" />
-        )}
-        <Table2 className="size-3.5 shrink-0 text-muted-foreground" />
-        <span className="truncate font-mono">{table.name}</span>
-      </button>
+      <div className="flex items-center border-border border-b bg-muted/40 pr-2">
+        <button
+          aria-label={`Drag ${table.name}`}
+          className="flex cursor-grab touch-none items-center py-1.5 pr-0.5 pl-1.5 text-muted-foreground active:cursor-grabbing"
+          onPointerCancel={onGripUp}
+          onPointerDown={onGripDown}
+          onPointerMove={onGripMove}
+          onPointerUp={onGripUp}
+          type="button"
+        >
+          <GripVertical className="size-3.5 shrink-0" />
+        </button>
+        <button
+          className="flex flex-1 items-center gap-1.5 py-1.5 pr-1 text-left font-semibold transition-colors hover:text-foreground"
+          onClick={onToggle}
+          type="button"
+        >
+          {collapsed ? (
+            <ChevronRight className="size-3.5 shrink-0" />
+          ) : (
+            <ChevronDown className="size-3.5 shrink-0" />
+          )}
+          <Table2 className="size-3.5 shrink-0 text-muted-foreground" />
+          <span className="truncate font-mono">{table.name}</span>
+        </button>
+      </div>
       <div className="divide-y divide-border/50">
         {visibleCols.map((c) => (
           <div
@@ -163,8 +193,19 @@ export function SchemaDiagram({ tables, className }: SchemaDiagramProps) {
   const [lines, setLines] = useState<Line[]>([]);
   const [collapsed, setCollapsed] = useState<Set<string>>(() => new Set());
   const [hovered, setHovered] = useState<string | null>(null);
+  const [positions, setPositions] = useState<Map<string, Point>>(() => new Map());
+  const [boardHeight, setBoardHeight] = useState<number | null>(null);
+  const [draggingName, setDraggingName] = useState<string | null>(null);
+  const dragRef = useRef<{
+    name: string;
+    startX: number;
+    startY: number;
+    origX: number;
+    origY: number;
+  } | null>(null);
 
   const edges = useMemo(() => buildEdges(tables), [tables]);
+  const measured = tables.length > 0 && tables.every((t) => positions.has(t.name));
 
   const recompute = useCallback(() => {
     const container = containerRef.current;
@@ -199,20 +240,50 @@ export function SchemaDiagram({ tables, className }: SchemaDiagramProps) {
     setLines(next);
   }, [edges]);
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: collapsed re-measures lines on collapse/expand
-  useEffect(() => {
+  const refresh = useCallback(() => {
     recompute();
     const container = containerRef.current;
     if (!container) return;
-    const ro = new ResizeObserver(() => recompute());
+    const cRect = container.getBoundingClientRect();
+    let maxBottom = 0;
+    for (const el of container.querySelectorAll("[data-table]")) {
+      maxBottom = Math.max(maxBottom, el.getBoundingClientRect().bottom - cRect.top);
+    }
+    if (maxBottom > 0) {
+      const h = maxBottom + 8;
+      setBoardHeight((prev) => (prev !== null && Math.abs(prev - h) <= 0.5 ? prev : h));
+    }
+  }, [recompute]);
+
+  useEffect(() => {
+    if (measured) return;
+    const container = containerRef.current;
+    if (!container) return;
+    const cRect = container.getBoundingClientRect();
+    const next = new Map<string, Point>();
+    for (const t of tables) {
+      const el = container.querySelector(`[data-table="${t.name}"]`);
+      if (!el) continue;
+      const r = el.getBoundingClientRect();
+      next.set(t.name, { x: r.left - cRect.left, y: r.top - cRect.top });
+    }
+    if (next.size === tables.length) setPositions(next);
+  }, [measured, tables]);
+
+  // biome-ignore lint/correctness/useExhaustiveDependencies: collapsed/positions re-measure lines + board height
+  useEffect(() => {
+    refresh();
+    const container = containerRef.current;
+    if (!container) return;
+    const ro = new ResizeObserver(() => refresh());
     ro.observe(container);
     for (const el of container.querySelectorAll("[data-table]")) ro.observe(el);
-    window.addEventListener("resize", recompute);
+    window.addEventListener("resize", refresh);
     return () => {
       ro.disconnect();
-      window.removeEventListener("resize", recompute);
+      window.removeEventListener("resize", refresh);
     };
-  }, [recompute, collapsed]);
+  }, [refresh, collapsed, positions]);
 
   const toggle = (name: string) =>
     setCollapsed((prev) => {
@@ -221,6 +292,30 @@ export function SchemaDiagram({ tables, className }: SchemaDiagramProps) {
       else next.add(name);
       return next;
     });
+
+  const startDrag = (name: string, e: React.PointerEvent) => {
+    const pos = positions.get(name) ?? { x: 0, y: 0 };
+    dragRef.current = { name, origX: pos.x, origY: pos.y, startX: e.clientX, startY: e.clientY };
+    setDraggingName(name);
+    e.currentTarget.setPointerCapture(e.pointerId);
+    e.preventDefault();
+  };
+
+  const moveDrag = (e: React.PointerEvent) => {
+    const d = dragRef.current;
+    if (!d) return;
+    const nx = Math.max(0, d.origX + (e.clientX - d.startX));
+    const ny = Math.max(0, d.origY + (e.clientY - d.startY));
+    setPositions((prev) => new Map(prev).set(d.name, { x: nx, y: ny }));
+  };
+
+  const endDrag = (e: React.PointerEvent) => {
+    if (!dragRef.current) return;
+    dragRef.current = null;
+    setDraggingName(null);
+    if (e.currentTarget.hasPointerCapture(e.pointerId))
+      e.currentTarget.releasePointerCapture(e.pointerId);
+  };
 
   if (tables.length === 0) {
     return (
@@ -241,7 +336,11 @@ export function SchemaDiagram({ tables, className }: SchemaDiagramProps) {
 
   return (
     <div className={cn("rounded-lg border border-border bg-card p-4 text-xs", className)}>
-      <div className="relative" ref={containerRef}>
+      <div
+        className="relative"
+        ref={containerRef}
+        style={measured && boardHeight ? { height: boardHeight } : undefined}
+      >
         <svg
           aria-hidden="true"
           className="pointer-events-none absolute inset-0 z-0 h-full w-full overflow-visible text-muted-foreground/70"
@@ -288,17 +387,27 @@ export function SchemaDiagram({ tables, className }: SchemaDiagramProps) {
             />
           ))}
         </svg>
-        <div className="relative z-10 flex flex-wrap gap-x-16 gap-y-8">
-          {tables.map((t) => (
-            <TableCard
-              collapsed={collapsed.has(t.name)}
-              dim={active ? !active.has(t.name) : false}
-              key={t.name}
-              onHover={setHovered}
-              onToggle={() => toggle(t.name)}
-              table={t}
-            />
-          ))}
+        <div className={cn("relative z-10", !measured && "flex flex-wrap gap-x-16 gap-y-8")}>
+          {tables.map((t) => {
+            const pos = positions.get(t.name);
+            return (
+              <TableCard
+                collapsed={collapsed.has(t.name)}
+                dim={active ? !active.has(t.name) : false}
+                dragging={draggingName === t.name}
+                key={t.name}
+                onGripDown={(e) => startDrag(t.name, e)}
+                onGripMove={moveDrag}
+                onGripUp={endDrag}
+                onHover={setHovered}
+                onToggle={() => toggle(t.name)}
+                style={
+                  measured && pos ? { left: pos.x, position: "absolute", top: pos.y } : undefined
+                }
+                table={t}
+              />
+            );
+          })}
         </div>
       </div>
     </div>
