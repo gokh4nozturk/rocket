@@ -16,7 +16,7 @@ export const siteConfig = {
     url: "https://gozturk.dev",
   },
   description:
-    "A distinctive shadcn registry of nested timelines, activity feeds and threaded comment components. Install them into your app with the shadcn CLI.",
+    "A distinctive shadcn registry of data & observability components — query builders, JSON inspectors, diff viewers, log streams, metric charts, trace waterfalls and more. Install them into your app with the shadcn CLI.",
   keywords: [
     "shadcn",
     "shadcn registry",
