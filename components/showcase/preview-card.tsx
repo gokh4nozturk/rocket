@@ -31,7 +31,7 @@ export function PreviewCard({
         <h3 className="font-medium text-foreground text-sm">
           <Link className="flex items-center gap-1 after:absolute after:inset-0" href={`/${slug}`}>
             {title}
-            <ArrowUpRight className="size-3.5 text-muted-foreground opacity-0 transition-opacity group-hover:opacity-100" />
+            <ArrowUpRight className="size-3.5 text-muted-foreground transition-opacity md:opacity-0 md:group-hover:opacity-100" />
           </Link>
         </h3>
         {/* <p className="text-muted-foreground text-sm leading-relaxed">{description}</p>
