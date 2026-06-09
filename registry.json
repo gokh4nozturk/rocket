@@ -268,6 +268,20 @@
           "type": "registry:ui"
         }
       ]
+    },
+    {
+      "name": "data-lineage",
+      "type": "registry:ui",
+      "title": "Data Lineage",
+      "description": "A layered data-lineage / DAG viewer: auto-laid-out source→transform→output nodes with dependency edges, direction-selectable transitive lineage tracing, node type/status indicators and an upstream/downstream impact summary.",
+      "dependencies": ["lucide-react"],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/craft/data-lineage.tsx",
+          "type": "registry:ui"
+        }
+      ]
     }
   ]
 }

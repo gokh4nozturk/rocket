@@ -4,6 +4,7 @@ import { type AuditEntry, AuditTrail } from "@/components/craft/audit-trail";
 import { type Cohort, CohortHeatmap } from "@/components/craft/cohort-heatmap";
 import { type CommentNode, CommentThread } from "@/components/craft/comment-thread";
 import { type Column, DataGrid } from "@/components/craft/data-grid";
+import { DataLineage, type LineageEdge, type LineageNode } from "@/components/craft/data-lineage";
 import { DiffViewer } from "@/components/craft/diff-viewer";
 import { JsonInspector } from "@/components/craft/json-inspector";
 import { LatencyHistogram } from "@/components/craft/latency-histogram";
@@ -842,6 +843,40 @@ const schemaTables: SchemaTable[] = [
   },
 ];
 
+const lineageNodes: LineageNode[] = [
+  { id: "events_raw", label: "events_raw", status: "stale", sublabel: "kafka", type: "source" },
+  { id: "users", label: "users", status: "fresh", sublabel: "postgres", type: "source" },
+  { id: "payments", label: "payments", status: "failed", sublabel: "stripe", type: "source" },
+  { id: "stg_events", label: "stg_events", sublabel: "dbt", type: "transform" },
+  { id: "dim_users", label: "dim_users", sublabel: "dbt", type: "transform" },
+  { id: "fct_orders", label: "fct_orders", sublabel: "dbt", type: "transform" },
+  {
+    id: "revenue_dashboard",
+    label: "revenue_dashboard",
+    status: "fresh",
+    sublabel: "looker",
+    type: "output",
+  },
+  {
+    id: "cohort_report",
+    label: "cohort_report",
+    status: "stale",
+    sublabel: "looker",
+    type: "output",
+  },
+];
+
+const lineageEdges: LineageEdge[] = [
+  { from: "events_raw", to: "stg_events" },
+  { from: "users", to: "dim_users" },
+  { from: "payments", to: "fct_orders" },
+  { from: "stg_events", to: "fct_orders" },
+  { from: "dim_users", to: "fct_orders" },
+  { from: "fct_orders", to: "revenue_dashboard" },
+  { from: "fct_orders", to: "cohort_report" },
+  { from: "dim_users", to: "cohort_report" },
+];
+
 export const showcaseEntries: ShowcaseEntry[] = [
   {
     demo: <LogStreamDemo />,
@@ -1000,6 +1035,14 @@ export const showcaseEntries: ShowcaseEntry[] = [
     registryName: "sql-console",
     slug: "sql-console",
     title: "SQL Console",
+  },
+  {
+    demo: <DataLineage edges={lineageEdges} nodes={lineageNodes} />,
+    description:
+      "A layered data-lineage / DAG viewer: auto-laid-out source→transform→output nodes with dependency edges, direction-selectable transitive lineage tracing, node type/status indicators and an upstream/downstream impact summary.",
+    registryName: "data-lineage",
+    slug: "data-lineage",
+    title: "Data Lineage",
   },
 ];
 

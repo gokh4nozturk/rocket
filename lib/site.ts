@@ -58,6 +58,8 @@ export const siteConfig = {
     "er diagram",
     "sql console",
     "sql runner",
+    "data lineage",
+    "dag",
     "ui components",
   ],
   name: "rocket",
