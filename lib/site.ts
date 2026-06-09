@@ -42,6 +42,8 @@ export const siteConfig = {
     "distributed tracing",
     "latency histogram",
     "distribution",
+    "status grid",
+    "status page",
     "ui components",
   ],
   name: "rocket",

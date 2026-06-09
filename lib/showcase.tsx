@@ -10,6 +10,7 @@ import {
   type MetricThreshold,
 } from "@/components/craft/metric-chart";
 import { QueryBuilder, type QueryField, type QueryGroup } from "@/components/craft/query-builder";
+import { type DayStatus, type Service, StatusGrid } from "@/components/craft/status-grid";
 import { Timeline, type TimelineItem } from "@/components/craft/timeline";
 import { type TraceSpan, TraceWaterfall } from "@/components/craft/trace-waterfall";
 import { LogStreamDemo } from "@/components/showcase/log-stream-demo";
@@ -384,6 +385,91 @@ const latencySamples = [
   150, 160, 172, 185, 200, 220, 245, 270, 300, 340, 390, 450, 520, 610,
 ];
 
+const STATUS_BASE = Date.UTC(2026, 5, 9);
+const STATUS_DAY_MS = 86_400_000;
+
+function mkHistory(
+  specials: Record<number, { status: Service["status"]; note?: string }>,
+): DayStatus[] {
+  return Array.from({ length: 90 }, (_, i) => {
+    const special = specials[i];
+    return {
+      date: STATUS_BASE - (89 - i) * STATUS_DAY_MS,
+      note: special?.note,
+      status: special?.status ?? "operational",
+    } satisfies DayStatus;
+  });
+}
+
+const statusServices: Service[] = [
+  {
+    category: "API",
+    history: mkHistory({}),
+    id: "gateway",
+    metric: "p95 142ms",
+    name: "API Gateway",
+    status: "operational",
+    uptime: 99.98,
+  },
+  {
+    category: "API",
+    history: mkHistory({
+      84: { status: "degraded" },
+      85: { status: "degraded" },
+      86: { note: "Elevated latency from a noisy deploy", status: "degraded" },
+    }),
+    id: "auth",
+    metric: "p95 380ms",
+    name: "Auth Service",
+    status: "degraded",
+    uptime: 99.41,
+  },
+  {
+    category: "Database",
+    history: mkHistory({ 40: { note: "Primary failover (12m)", status: "down" } }),
+    id: "pg",
+    metric: "p95 8ms",
+    name: "Postgres (primary)",
+    status: "operational",
+    uptime: 99.99,
+  },
+  {
+    category: "Database",
+    history: mkHistory({}),
+    id: "redis",
+    metric: "p95 1ms",
+    name: "Redis Cache",
+    status: "operational",
+    uptime: 100,
+  },
+  {
+    category: "Workers",
+    history: mkHistory({ 70: { status: "degraded" } }),
+    id: "queue",
+    metric: "lag 0.4s",
+    name: "Job Queue",
+    status: "operational",
+    uptime: 99.95,
+  },
+  {
+    category: "Workers",
+    history: mkHistory({ 89: { note: "Planned maintenance window", status: "maintenance" } }),
+    id: "cron",
+    name: "Scheduler",
+    status: "maintenance",
+    uptime: 99.9,
+  },
+  {
+    category: "Edge",
+    history: mkHistory({}),
+    id: "cdn",
+    metric: "hit 98.7%",
+    name: "CDN",
+    status: "operational",
+    uptime: 100,
+  },
+];
+
 export const showcaseEntries: ShowcaseEntry[] = [
   {
     demo: <LogStreamDemo />,
@@ -478,6 +564,14 @@ export const showcaseEntries: ShowcaseEntry[] = [
     registryName: "latency-histogram",
     slug: "latency-histogram",
     title: "Latency Histogram",
+  },
+  {
+    demo: <StatusGrid services={statusServices} />,
+    description:
+      "A statuspage-style service health grid: category-grouped rows with current status, uptime, a per-service metric and a 90-day uptime strip, plus an overall status banner and legend.",
+    registryName: "status-grid",
+    slug: "status-grid",
+    title: "Status Grid",
   },
 ];
 

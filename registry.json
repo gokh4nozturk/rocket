@@ -156,6 +156,20 @@
           "type": "registry:ui"
         }
       ]
+    },
+    {
+      "name": "status-grid",
+      "type": "registry:ui",
+      "title": "Status Grid",
+      "description": "A statuspage-style service health grid: category-grouped rows with current status, uptime, a per-service metric and a 90-day uptime strip, plus an overall status banner and legend.",
+      "dependencies": ["lucide-react", "motion"],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/craft/status-grid.tsx",
+          "type": "registry:ui"
+        }
+      ]
     }
   ]
 }
