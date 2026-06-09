@@ -226,6 +226,20 @@
           "type": "registry:ui"
         }
       ]
+    },
+    {
+      "name": "data-grid",
+      "type": "registry:ui",
+      "title": "Data Grid",
+      "description": "A query-result data grid: type-aware cells, sortable columns, global search + faceted column filters, column visibility, row selection and pagination.",
+      "dependencies": ["lucide-react"],
+      "registryDependencies": ["table", "checkbox", "dropdown-menu", "input", "button"],
+      "files": [
+        {
+          "path": "components/craft/data-grid.tsx",
+          "type": "registry:ui"
+        }
+      ]
     }
   ]
 }

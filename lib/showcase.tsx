@@ -3,6 +3,7 @@ import { type Alert, AlertFeed } from "@/components/craft/alert-feed";
 import { type AuditEntry, AuditTrail } from "@/components/craft/audit-trail";
 import { type Cohort, CohortHeatmap } from "@/components/craft/cohort-heatmap";
 import { type CommentNode, CommentThread } from "@/components/craft/comment-thread";
+import { type Column, DataGrid } from "@/components/craft/data-grid";
 import { DiffViewer } from "@/components/craft/diff-viewer";
 import { JsonInspector } from "@/components/craft/json-inspector";
 import { LatencyHistogram } from "@/components/craft/latency-histogram";
@@ -607,6 +608,179 @@ const alertItems: Alert[] = [
   },
 ];
 
+const gridColumns: Column[] = [
+  { key: "name", label: "Name", type: "text" },
+  { key: "email", label: "Email", type: "text" },
+  { facet: true, key: "plan", label: "Plan", type: "badge" },
+  { align: "right", key: "mrr", label: "MRR", type: "number" },
+  { facet: true, key: "status", label: "Status", type: "badge" },
+  { key: "signedUp", label: "Signed up", type: "date" },
+  { key: "active", label: "Active", type: "boolean" },
+];
+
+const gridRows: Record<string, unknown>[] = [
+  {
+    active: true,
+    email: "ada@acme.io",
+    id: 1,
+    mrr: 499,
+    name: "Ada Lovelace",
+    plan: "enterprise",
+    signedUp: "2025-11-02",
+    status: "active",
+  },
+  {
+    active: true,
+    email: "linus@kernel.org",
+    id: 2,
+    mrr: 99,
+    name: "Linus Park",
+    plan: "pro",
+    signedUp: "2026-01-14",
+    status: "active",
+  },
+  {
+    active: false,
+    email: "grace@navy.mil",
+    id: 3,
+    mrr: 0,
+    name: "Grace Hopper",
+    plan: "free",
+    signedUp: "2025-09-21",
+    status: "churned",
+  },
+  {
+    active: true,
+    email: "margaret@nasa.gov",
+    id: 4,
+    mrr: 99,
+    name: "Margaret Hamilton",
+    plan: "pro",
+    signedUp: "2026-02-08",
+    status: "active",
+  },
+  {
+    active: true,
+    email: "alan@bletchley.uk",
+    id: 5,
+    mrr: 499,
+    name: "Alan Turing",
+    plan: "enterprise",
+    signedUp: "2025-12-30",
+    status: "active",
+  },
+  {
+    active: false,
+    email: "katherine@nasa.gov",
+    id: 6,
+    mrr: 29,
+    name: "Katherine Johnson",
+    plan: "starter",
+    signedUp: "2026-03-19",
+    status: "trialing",
+  },
+  {
+    active: true,
+    email: "donald@stanford.edu",
+    id: 7,
+    mrr: 99,
+    name: "Donald Knuth",
+    plan: "pro",
+    signedUp: "2025-10-11",
+    status: "active",
+  },
+  {
+    active: true,
+    email: "barbara@ibm.com",
+    id: 8,
+    mrr: 29,
+    name: "Barbara Liskov",
+    plan: "starter",
+    signedUp: "2026-04-02",
+    status: "active",
+  },
+  {
+    active: false,
+    email: "edsger@utexas.edu",
+    id: 9,
+    mrr: 0,
+    name: "Edsger Dijkstra",
+    plan: "free",
+    signedUp: "2025-08-17",
+    status: "churned",
+  },
+  {
+    active: true,
+    email: "john@princeton.edu",
+    id: 10,
+    mrr: 499,
+    name: "John von Neumann",
+    plan: "enterprise",
+    signedUp: "2026-01-29",
+    status: "active",
+  },
+  {
+    active: true,
+    email: "claude@bell.labs",
+    id: 11,
+    mrr: 99,
+    name: "Claude Shannon",
+    plan: "pro",
+    signedUp: "2025-11-23",
+    status: "active",
+  },
+  {
+    active: false,
+    email: "tim@w3.org",
+    id: 12,
+    mrr: 29,
+    name: "Tim Berners-Lee",
+    plan: "starter",
+    signedUp: "2026-02-26",
+    status: "trialing",
+  },
+  {
+    active: true,
+    email: "vint@google.com",
+    id: 13,
+    mrr: 499,
+    name: "Vint Cerf",
+    plan: "enterprise",
+    signedUp: "2025-12-05",
+    status: "active",
+  },
+  {
+    active: true,
+    email: "radia@sun.com",
+    id: 14,
+    mrr: 99,
+    name: "Radia Perlman",
+    plan: "pro",
+    signedUp: "2026-03-08",
+    status: "active",
+  },
+  {
+    active: false,
+    email: "ken@bell.labs",
+    id: 15,
+    mrr: 0,
+    name: "Ken Thompson",
+    plan: "free",
+    signedUp: "2025-09-02",
+    status: "churned",
+  },
+  {
+    active: true,
+    email: "dennis@bell.labs",
+    id: 16,
+    mrr: 29,
+    name: "Dennis Ritchie",
+    plan: "starter",
+    signedUp: "2026-04-20",
+    status: "active",
+  },
+];
+
 export const showcaseEntries: ShowcaseEntry[] = [
   {
     demo: <LogStreamDemo />,
@@ -741,6 +915,14 @@ export const showcaseEntries: ShowcaseEntry[] = [
     registryName: "data-freshness",
     slug: "data-freshness",
     title: "Data Freshness",
+  },
+  {
+    demo: <DataGrid columns={gridColumns} rows={gridRows} />,
+    description:
+      "A query-result data grid: type-aware cells, sortable columns, global search + faceted column filters, column visibility, row selection and pagination.",
+    registryName: "data-grid",
+    slug: "data-grid",
+    title: "Data Grid",
   },
 ];
 
