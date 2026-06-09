@@ -184,6 +184,20 @@
           "type": "registry:ui"
         }
       ]
+    },
+    {
+      "name": "audit-trail",
+      "type": "registry:ui",
+      "title": "Audit Trail",
+      "description": "A field-level audit trail / changelog: who created/updated/deleted what, when, with old→new field diffs, action badges, date grouping, relative time, actor avatars and actor/action filters.",
+      "dependencies": ["lucide-react", "motion"],
+      "registryDependencies": ["avatar"],
+      "files": [
+        {
+          "path": "components/craft/audit-trail.tsx",
+          "type": "registry:ui"
+        }
+      ]
     }
   ]
 }

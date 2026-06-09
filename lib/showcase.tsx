@@ -1,4 +1,5 @@
 import { ActivityFeed, type ActivityItem } from "@/components/craft/activity-feed";
+import { type AuditEntry, AuditTrail } from "@/components/craft/audit-trail";
 import { type Cohort, CohortHeatmap } from "@/components/craft/cohort-heatmap";
 import { type CommentNode, CommentThread } from "@/components/craft/comment-thread";
 import { DiffViewer } from "@/components/craft/diff-viewer";
@@ -484,6 +485,76 @@ const cohortData: Cohort[] = [
   { label: "Aug", size: 1080, values: [1080, 778, 637] },
 ];
 
+const AUDIT_BASE = Date.UTC(2026, 5, 9, 14, 0, 0);
+const AUDIT_HOUR = 3_600_000;
+
+const auditEntries: AuditEntry[] = [
+  {
+    action: "updated",
+    actor: {
+      avatarUrl: "https://avatars.githubusercontent.com/u/124599?v=4",
+      name: "Ada Lovelace",
+    },
+    changes: [
+      { after: "shipped", before: "pending", field: "status" },
+      { after: "DHL", before: null, field: "carrier" },
+    ],
+    id: "a1",
+    target: "Order #1042",
+    time: AUDIT_BASE - 0.5 * AUDIT_HOUR,
+  },
+  {
+    action: "created",
+    actor: { name: "Linus Park" },
+    id: "a2",
+    target: "User grace@acme.io",
+    time: AUDIT_BASE - 2 * AUDIT_HOUR,
+  },
+  {
+    action: "updated",
+    actor: {
+      avatarUrl: "https://avatars.githubusercontent.com/u/810438?v=4",
+      name: "Grace Hopper",
+    },
+    changes: [
+      { after: 25, before: 10, field: "seats" },
+      { after: "enterprise", before: "pro", field: "tier" },
+    ],
+    id: "a3",
+    target: "Plan team-2",
+    time: AUDIT_BASE - 5 * AUDIT_HOUR,
+  },
+  {
+    action: "deleted",
+    actor: {
+      avatarUrl: "https://avatars.githubusercontent.com/u/124599?v=4",
+      name: "Ada Lovelace",
+    },
+    changes: [{ before: "https://old.example.com/hook", field: "url" }],
+    id: "a4",
+    target: "Webhook #88",
+    time: AUDIT_BASE - 26 * AUDIT_HOUR,
+  },
+  {
+    action: "updated",
+    actor: { name: "Margaret Hamilton" },
+    changes: [
+      { after: 99.99, before: 129.99, field: "total" },
+      { after: "refunded", before: "pending", field: "status" },
+    ],
+    id: "a5",
+    target: "Order #1039",
+    time: AUDIT_BASE - 28 * AUDIT_HOUR,
+  },
+  {
+    action: "created",
+    actor: { name: "Linus Park" },
+    id: "a6",
+    target: "API Key prod-7",
+    time: AUDIT_BASE - 30 * AUDIT_HOUR,
+  },
+];
+
 export const showcaseEntries: ShowcaseEntry[] = [
   {
     demo: <LogStreamDemo />,
@@ -594,6 +665,14 @@ export const showcaseEntries: ShowcaseEntry[] = [
     registryName: "cohort-heatmap",
     slug: "cohort-heatmap",
     title: "Cohort Heatmap",
+  },
+  {
+    demo: <AuditTrail entries={auditEntries} />,
+    description:
+      "A field-level audit trail / changelog: who created/updated/deleted what, when, with old→new field diffs, action badges, date grouping, relative time, actor avatars and actor/action filters.",
+    registryName: "audit-trail",
+    slug: "audit-trail",
+    title: "Audit Trail",
   },
 ];
 
