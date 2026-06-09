@@ -50,6 +50,8 @@ export const siteConfig = {
     "changelog",
     "alert feed",
     "incident",
+    "data freshness",
+    "pipeline status",
     "ui components",
   ],
   name: "rocket",

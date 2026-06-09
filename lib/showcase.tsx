@@ -16,6 +16,7 @@ import { QueryBuilder, type QueryField, type QueryGroup } from "@/components/cra
 import { type DayStatus, type Service, StatusGrid } from "@/components/craft/status-grid";
 import { Timeline, type TimelineItem } from "@/components/craft/timeline";
 import { type TraceSpan, TraceWaterfall } from "@/components/craft/trace-waterfall";
+import { DataFreshnessDemo } from "@/components/showcase/data-freshness-demo";
 import { LogStreamDemo } from "@/components/showcase/log-stream-demo";
 import { StatTileDemo } from "@/components/showcase/stat-tile-demo";
 
@@ -732,6 +733,14 @@ export const showcaseEntries: ShowcaseEntry[] = [
     registryName: "alert-feed",
     slug: "alert-feed",
     title: "Alert Feed",
+  },
+  {
+    demo: <DataFreshnessDemo />,
+    description:
+      "A data-freshness / pipeline-status board: SLA-derived fresh/stale (with failed/running override), a status summary banner, a per-source SLA bar, next-run schedule, source-type icons and row counts.",
+    registryName: "data-freshness",
+    slug: "data-freshness",
+    title: "Data Freshness",
   },
 ];
 

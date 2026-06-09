@@ -212,6 +212,20 @@
           "type": "registry:ui"
         }
       ]
+    },
+    {
+      "name": "data-freshness",
+      "type": "registry:ui",
+      "title": "Data Freshness",
+      "description": "A data-freshness / pipeline-status board: SLA-derived fresh/stale (with failed/running override), a status summary banner, a per-source SLA bar, next-run schedule, source-type icons and row counts.",
+      "dependencies": ["lucide-react", "motion"],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/craft/data-freshness.tsx",
+          "type": "registry:ui"
+        }
+      ]
     }
   ]
 }
