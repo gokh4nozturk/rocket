@@ -15,6 +15,7 @@ import {
   type MetricThreshold,
 } from "@/components/craft/metric-chart";
 import { QueryBuilder, type QueryField, type QueryGroup } from "@/components/craft/query-builder";
+import { type ResourceMetric, ResourceMonitor } from "@/components/craft/resource-monitor";
 import { SchemaDiagram, type SchemaTable } from "@/components/craft/schema-diagram";
 import { type DayStatus, type Service, StatusGrid } from "@/components/craft/status-grid";
 import { Timeline, type TimelineItem } from "@/components/craft/timeline";
@@ -877,6 +878,13 @@ const lineageEdges: LineageEdge[] = [
   { from: "dim_users", to: "cohort_report" },
 ];
 
+const resourceMetrics: ResourceMetric[] = [
+  { critical: 90, id: "cpu", label: "CPU", unit: "%", value: 42, warn: 70 },
+  { critical: 90, id: "memory", label: "Memory", unit: "%", value: 68, warn: 75 },
+  { critical: 90, id: "disk", label: "Disk", unit: "%", value: 83, warn: 70 },
+  { critical: 110, id: "network", label: "Network", max: 125, unit: "MB/s", value: 34, warn: 80 },
+];
+
 export const showcaseEntries: ShowcaseEntry[] = [
   {
     demo: <LogStreamDemo />,
@@ -1043,6 +1051,14 @@ export const showcaseEntries: ShowcaseEntry[] = [
     registryName: "data-lineage",
     slug: "data-lineage",
     title: "Data Lineage",
+  },
+  {
+    demo: <ResourceMonitor metrics={resourceMetrics} />,
+    description:
+      "A live resource monitor: per-resource 270° radial gauges with threshold zones, a history sparkline with peak/avg, a health summary banner and a pause/play live toggle. Self-updating (random walk) with a live prop.",
+    registryName: "resource-monitor",
+    slug: "resource-monitor",
+    title: "Resource Monitor",
   },
 ];
 

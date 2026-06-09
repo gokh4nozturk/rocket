@@ -282,6 +282,20 @@
           "type": "registry:ui"
         }
       ]
+    },
+    {
+      "name": "resource-monitor",
+      "type": "registry:ui",
+      "title": "Resource Monitor",
+      "description": "A live resource monitor: per-resource 270° radial gauges with threshold zones, a history sparkline with peak/avg, a health summary banner and a pause/play live toggle. Self-updating (random walk) with a live prop.",
+      "dependencies": ["lucide-react"],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/craft/resource-monitor.tsx",
+          "type": "registry:ui"
+        }
+      ]
     }
   ]
 }

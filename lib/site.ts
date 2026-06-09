@@ -60,6 +60,8 @@ export const siteConfig = {
     "sql runner",
     "data lineage",
     "dag",
+    "resource monitor",
+    "gauge",
     "ui components",
   ],
   name: "rocket",
