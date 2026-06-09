@@ -2,6 +2,7 @@ import { ActivityFeed, type ActivityItem } from "@/components/craft/activity-fee
 import { type CommentNode, CommentThread } from "@/components/craft/comment-thread";
 import { DiffViewer } from "@/components/craft/diff-viewer";
 import { JsonInspector } from "@/components/craft/json-inspector";
+import { LatencyHistogram } from "@/components/craft/latency-histogram";
 import {
   type MetricAnnotation,
   MetricChart,
@@ -377,6 +378,12 @@ const traceSpans: TraceSpan[] = [
   },
 ];
 
+const latencySamples = [
+  38, 41, 42, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 58, 59, 60, 62, 63, 64, 65, 66,
+  68, 70, 72, 74, 76, 78, 80, 82, 85, 88, 90, 92, 95, 98, 100, 105, 110, 115, 120, 128, 135, 142,
+  150, 160, 172, 185, 200, 220, 245, 270, 300, 340, 390, 450, 520, 610,
+];
+
 export const showcaseEntries: ShowcaseEntry[] = [
   {
     demo: <LogStreamDemo />,
@@ -463,6 +470,14 @@ export const showcaseEntries: ShowcaseEntry[] = [
     registryName: "metric-chart",
     slug: "metric-chart",
     title: "Metric Chart",
+  },
+  {
+    demo: <LatencyHistogram samples={latencySamples} unit="ms" />,
+    description:
+      "A latency distribution histogram with p50/p95/p99 markers, percentile-zone bar coloring, hover bucket counts and a summary stat row; accepts raw samples or pre-bucketed bins.",
+    registryName: "latency-histogram",
+    slug: "latency-histogram",
+    title: "Latency Histogram",
   },
 ];
 

@@ -40,6 +40,8 @@ export const siteConfig = {
     "time series",
     "trace waterfall",
     "distributed tracing",
+    "latency histogram",
+    "distribution",
     "ui components",
   ],
   name: "rocket",

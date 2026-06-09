@@ -142,6 +142,20 @@
           "type": "registry:ui"
         }
       ]
+    },
+    {
+      "name": "latency-histogram",
+      "type": "registry:ui",
+      "title": "Latency Histogram",
+      "description": "A latency distribution histogram with p50/p95/p99 markers, percentile-zone bar coloring, hover bucket counts and a summary stat row; accepts raw samples or pre-bucketed bins.",
+      "dependencies": ["motion"],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/craft/latency-histogram.tsx",
+          "type": "registry:ui"
+        }
+      ]
     }
   ]
 }
