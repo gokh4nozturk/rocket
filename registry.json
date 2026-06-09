@@ -170,6 +170,20 @@
           "type": "registry:ui"
         }
       ]
+    },
+    {
+      "name": "cohort-heatmap",
+      "type": "registry:ui",
+      "title": "Cohort Heatmap",
+      "description": "A cohort retention heatmap: cohort rows by period columns with intensity-colored cells, in-cell percentages, a column-average row, a color legend and hover detail. Accepts retained counts (+size) or raw percentages.",
+      "dependencies": ["motion"],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/craft/cohort-heatmap.tsx",
+          "type": "registry:ui"
+        }
+      ]
     }
   ]
 }

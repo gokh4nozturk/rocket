@@ -1,4 +1,5 @@
 import { ActivityFeed, type ActivityItem } from "@/components/craft/activity-feed";
+import { type Cohort, CohortHeatmap } from "@/components/craft/cohort-heatmap";
 import { type CommentNode, CommentThread } from "@/components/craft/comment-thread";
 import { DiffViewer } from "@/components/craft/diff-viewer";
 import { JsonInspector } from "@/components/craft/json-inspector";
@@ -470,6 +471,19 @@ const statusServices: Service[] = [
   },
 ];
 
+const cohortPeriods = ["Wk 0", "Wk 1", "Wk 2", "Wk 3", "Wk 4", "Wk 5", "Wk 6", "Wk 7"];
+
+const cohortData: Cohort[] = [
+  { label: "Jan", size: 1200, values: [1200, 720, 540, 456, 408, 372, 348, 336] },
+  { label: "Feb", size: 1010, values: [1010, 626, 454, 384, 343, 313, 293] },
+  { label: "Mar", size: 1420, values: [1420, 909, 696, 596, 540, 497, 469, 455] },
+  { label: "Apr", size: 980, values: [980, 568, 412, 343, 304, 274] },
+  { label: "May", size: 1330, values: [1330, 878, 678, 585, 532, 492] },
+  { label: "Jun", size: 1150, values: [1150, 759, 587, 506, 460] },
+  { label: "Jul", size: 1290, values: [1290, 877, 696, 606] },
+  { label: "Aug", size: 1080, values: [1080, 778, 637] },
+];
+
 export const showcaseEntries: ShowcaseEntry[] = [
   {
     demo: <LogStreamDemo />,
@@ -572,6 +586,14 @@ export const showcaseEntries: ShowcaseEntry[] = [
     registryName: "status-grid",
     slug: "status-grid",
     title: "Status Grid",
+  },
+  {
+    demo: <CohortHeatmap cohorts={cohortData} periodLabels={cohortPeriods} />,
+    description:
+      "A cohort retention heatmap: cohort rows by period columns with intensity-colored cells, in-cell percentages, a column-average row, a color legend and hover detail. Accepts retained counts (+size) or raw percentages.",
+    registryName: "cohort-heatmap",
+    slug: "cohort-heatmap",
+    title: "Cohort Heatmap",
   },
 ];
 

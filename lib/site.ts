@@ -44,6 +44,8 @@ export const siteConfig = {
     "distribution",
     "status grid",
     "status page",
+    "cohort heatmap",
+    "retention",
     "ui components",
   ],
   name: "rocket",
