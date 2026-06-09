@@ -71,7 +71,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         >
           <div className="relative mx-auto flex w-full max-w-7xl flex-col md:flex-row">
             <MobileNav items={navItems} />
-            <aside className="hidden shrink-0 flex-col gap-6 px-6 py-6 md:fixed md:flex md:h-screen md:w-56 md:border-r">
+            <aside className="hidden shrink-0 flex-col gap-6 overflow-y-auto px-6 py-6 md:fixed md:flex md:h-screen md:w-56 md:border-r">
               <SidebarContent items={navItems} />
             </aside>
             <main className="min-w-0 flex-1 px-6 py-8 md:ml-56 md:py-12">{children}</main>
