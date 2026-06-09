@@ -56,6 +56,8 @@ export const siteConfig = {
     "data table",
     "schema diagram",
     "er diagram",
+    "sql console",
+    "sql runner",
     "ui components",
   ],
   name: "rocket",

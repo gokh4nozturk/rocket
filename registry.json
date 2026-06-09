@@ -254,6 +254,20 @@
           "type": "registry:ui"
         }
       ]
+    },
+    {
+      "name": "sql-console",
+      "type": "registry:ui",
+      "title": "SQL Console",
+      "description": "A SQL console/runner: a syntax-highlighted editor, Run (⌘↵) with running/success/error status, duration + row-count, a result table, an error panel and query history. Bring your own onRun executor.",
+      "dependencies": ["lucide-react"],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/craft/sql-console.tsx",
+          "type": "registry:ui"
+        }
+      ]
     }
   ]
 }

@@ -20,6 +20,7 @@ import { Timeline, type TimelineItem } from "@/components/craft/timeline";
 import { type TraceSpan, TraceWaterfall } from "@/components/craft/trace-waterfall";
 import { DataFreshnessDemo } from "@/components/showcase/data-freshness-demo";
 import { LogStreamDemo } from "@/components/showcase/log-stream-demo";
+import { SqlConsoleDemo } from "@/components/showcase/sql-console-demo";
 import { StatTileDemo } from "@/components/showcase/stat-tile-demo";
 
 export type ShowcaseEntry = {
@@ -991,6 +992,14 @@ export const showcaseEntries: ShowcaseEntry[] = [
     registryName: "schema-diagram",
     slug: "schema-diagram",
     title: "Schema Diagram",
+  },
+  {
+    demo: <SqlConsoleDemo />,
+    description:
+      "A SQL console/runner: a syntax-highlighted editor, Run (⌘↵) with running/success/error status, duration + row-count, a result table, an error panel and query history. Bring your own onRun executor.",
+    registryName: "sql-console",
+    slug: "sql-console",
+    title: "SQL Console",
   },
 ];
 
