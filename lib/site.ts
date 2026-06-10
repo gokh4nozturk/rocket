@@ -72,6 +72,8 @@ export const siteConfig = {
     "activity",
     "funnel",
     "conversion",
+    "data dictionary",
+    "catalog",
     "ui components",
   ],
   name: "rocket",

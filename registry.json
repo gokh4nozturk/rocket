@@ -366,6 +366,20 @@
           "type": "registry:ui"
         }
       ]
+    },
+    {
+      "name": "data-dictionary",
+      "type": "registry:ui",
+      "title": "Data Dictionary",
+      "description": "A searchable data dictionary / catalog browser: column metadata (type, table, tags, PII, samples) with match-highlighted search, table filter chips, a PII-only toggle and expandable rows.",
+      "dependencies": ["lucide-react", "motion"],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/craft/data-dictionary.tsx",
+          "type": "registry:ui"
+        }
+      ]
     }
   ]
 }

@@ -4,6 +4,7 @@ import { type AuditEntry, AuditTrail } from "@/components/craft/audit-trail";
 import { CalendarHeatmap, type HeatmapDay } from "@/components/craft/calendar-heatmap";
 import { type Cohort, CohortHeatmap } from "@/components/craft/cohort-heatmap";
 import { type CommentNode, CommentThread } from "@/components/craft/comment-thread";
+import { DataDictionary, type DictionaryColumn } from "@/components/craft/data-dictionary";
 import { type Column, DataGrid } from "@/components/craft/data-grid";
 import { DataLineage, type LineageEdge, type LineageNode } from "@/components/craft/data-lineage";
 import { DataQuality, type QualityCheck } from "@/components/craft/data-quality";
@@ -1024,6 +1025,110 @@ const funnelSteps: FunnelStep[] = [
   { id: "renewed", label: "Renewed", value: 1240 },
 ];
 
+const dictionaryColumns: DictionaryColumn[] = [
+  {
+    description: "Primary key.",
+    name: "id",
+    nullable: false,
+    sample: ["a1b2…", "c3d4…"],
+    table: "users",
+    tags: ["identifier"],
+    type: "uuid",
+  },
+  {
+    description: "User email address; unique per account.",
+    name: "email",
+    nullable: false,
+    pii: true,
+    sample: ["a***@acme.io"],
+    table: "users",
+    tags: ["identifier"],
+    type: "varchar(255)",
+  },
+  {
+    description: "E.164 phone number collected at signup.",
+    name: "phone",
+    nullable: true,
+    pii: true,
+    sample: ["+1 ••• •• 42"],
+    table: "users",
+    type: "varchar(20)",
+  },
+  {
+    description: "Subscription plan slug.",
+    name: "plan",
+    nullable: false,
+    sample: ["free", "pro", "enterprise"],
+    table: "users",
+    tags: ["dimension"],
+    type: "varchar(20)",
+  },
+  {
+    description: "Order primary key.",
+    name: "id",
+    nullable: false,
+    table: "orders",
+    tags: ["identifier"],
+    type: "uuid",
+  },
+  {
+    description: "FK → users.id; the purchasing user.",
+    name: "user_id",
+    nullable: false,
+    table: "orders",
+    tags: ["identifier"],
+    type: "uuid",
+  },
+  {
+    description: "Order lifecycle state.",
+    name: "status",
+    nullable: false,
+    sample: ["pending", "shipped", "refunded"],
+    table: "orders",
+    tags: ["dimension"],
+    type: "varchar(20)",
+  },
+  {
+    description: "Order total in the order currency.",
+    name: "total",
+    nullable: false,
+    sample: ["129.99"],
+    table: "orders",
+    tags: ["metric"],
+    type: "numeric(10,2)",
+  },
+  {
+    name: "created_at",
+    nullable: false,
+    table: "orders",
+    type: "timestamptz",
+  },
+  {
+    description: "Event name, snake_case.",
+    name: "event",
+    nullable: false,
+    sample: ["page_view", "checkout_started"],
+    table: "events",
+    tags: ["dimension"],
+    type: "varchar(64)",
+  },
+  {
+    description: "JSON payload of event properties.",
+    name: "properties",
+    nullable: true,
+    table: "events",
+    type: "jsonb",
+  },
+  {
+    description: "Client timestamp of the event.",
+    name: "occurred_at",
+    nullable: false,
+    table: "events",
+    tags: ["metric"],
+    type: "timestamptz",
+  },
+];
+
 export const showcaseEntries: ShowcaseEntry[] = [
   {
     demo: <LogStreamDemo />,
@@ -1238,6 +1343,14 @@ export const showcaseEntries: ShowcaseEntry[] = [
     registryName: "funnel-chart",
     slug: "funnel-chart",
     title: "Funnel Chart",
+  },
+  {
+    demo: <DataDictionary columns={dictionaryColumns} />,
+    description:
+      "A searchable data dictionary / catalog browser: column metadata (type, table, tags, PII, samples) with match-highlighted search, table filter chips, a PII-only toggle and expandable rows.",
+    registryName: "data-dictionary",
+    slug: "data-dictionary",
+    title: "Data Dictionary",
   },
 ];
 
