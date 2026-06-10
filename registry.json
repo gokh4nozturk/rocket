@@ -338,6 +338,20 @@
           "type": "registry:ui"
         }
       ]
+    },
+    {
+      "name": "calendar-heatmap",
+      "type": "registry:ui",
+      "title": "Calendar Heatmap",
+      "description": "A GitHub-contributions-style calendar heatmap: per-day values laid out as weeks × weekdays with intensity colors, month/weekday labels, a legend and hover detail. Pure UTC layout.",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/craft/calendar-heatmap.tsx",
+          "type": "registry:ui"
+        }
+      ]
     }
   ]
 }

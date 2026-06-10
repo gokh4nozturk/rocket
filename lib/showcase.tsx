@@ -1,6 +1,7 @@
 import { ActivityFeed, type ActivityItem } from "@/components/craft/activity-feed";
 import { type Alert, AlertFeed } from "@/components/craft/alert-feed";
 import { type AuditEntry, AuditTrail } from "@/components/craft/audit-trail";
+import { CalendarHeatmap, type HeatmapDay } from "@/components/craft/calendar-heatmap";
 import { type Cohort, CohortHeatmap } from "@/components/craft/cohort-heatmap";
 import { type CommentNode, CommentThread } from "@/components/craft/comment-thread";
 import { type Column, DataGrid } from "@/components/craft/data-grid";
@@ -1000,6 +1001,20 @@ const storageNodes: TreemapNode[] = [
   { category: "public", id: "products", label: "products", value: 18 },
 ];
 
+const HEATMAP_BASE = Date.UTC(2026, 2, 1);
+
+const calendarData: HeatmapDay[] = Array.from({ length: 112 }, (_, i) => {
+  const epoch = HEATMAP_BASE + i * 86_400_000;
+  const weekday = new Date(epoch).getUTCDay();
+  const weekend = weekday === 0 || weekday === 6;
+  const wave = Math.sin(i / 6) * 0.5 + 0.5;
+  const base = weekend ? 200 : 900;
+  return {
+    date: new Date(epoch).toISOString().slice(0, 10),
+    value: Math.round(base * (0.4 + wave) + (i % 5) * 60),
+  };
+});
+
 export const showcaseEntries: ShowcaseEntry[] = [
   {
     demo: <LogStreamDemo />,
@@ -1198,6 +1213,14 @@ export const showcaseEntries: ShowcaseEntry[] = [
     registryName: "treemap",
     slug: "treemap",
     title: "Treemap",
+  },
+  {
+    demo: <CalendarHeatmap data={calendarData} unit="events" />,
+    description:
+      "A GitHub-contributions-style calendar heatmap: per-day values laid out as weeks × weekdays with intensity colors, month/weekday labels, a legend and hover detail. Pure UTC layout.",
+    registryName: "calendar-heatmap",
+    slug: "calendar-heatmap",
+    title: "Calendar Heatmap",
   },
 ];
 

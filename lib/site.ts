@@ -68,6 +68,8 @@ export const siteConfig = {
     "data validation",
     "treemap",
     "storage map",
+    "calendar heatmap",
+    "activity",
     "ui components",
   ],
   name: "rocket",
