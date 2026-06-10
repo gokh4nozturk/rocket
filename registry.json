@@ -352,6 +352,20 @@
           "type": "registry:ui"
         }
       ]
+    },
+    {
+      "name": "funnel-chart",
+      "type": "registry:ui",
+      "title": "Funnel Chart",
+      "description": "A conversion funnel: centered tapering step bars with counts, % of first, step-over-step drop-off connectors, an overall conversion badge and hover detail. Pure computed layout.",
+      "dependencies": ["lucide-react"],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/craft/funnel-chart.tsx",
+          "type": "registry:ui"
+        }
+      ]
     }
   ]
 }

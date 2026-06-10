@@ -8,6 +8,7 @@ import { type Column, DataGrid } from "@/components/craft/data-grid";
 import { DataLineage, type LineageEdge, type LineageNode } from "@/components/craft/data-lineage";
 import { DataQuality, type QualityCheck } from "@/components/craft/data-quality";
 import { DiffViewer } from "@/components/craft/diff-viewer";
+import { FunnelChart, type FunnelStep } from "@/components/craft/funnel-chart";
 import { JsonInspector } from "@/components/craft/json-inspector";
 import { LatencyHistogram } from "@/components/craft/latency-histogram";
 import {
@@ -1015,6 +1016,14 @@ const calendarData: HeatmapDay[] = Array.from({ length: 112 }, (_, i) => {
   };
 });
 
+const funnelSteps: FunnelStep[] = [
+  { id: "visited", label: "Visited", value: 24800 },
+  { id: "signed_up", label: "Signed up", value: 8400 },
+  { id: "activated", label: "Activated", value: 5100 },
+  { id: "subscribed", label: "Subscribed", value: 1920 },
+  { id: "renewed", label: "Renewed", value: 1240 },
+];
+
 export const showcaseEntries: ShowcaseEntry[] = [
   {
     demo: <LogStreamDemo />,
@@ -1221,6 +1230,14 @@ export const showcaseEntries: ShowcaseEntry[] = [
     registryName: "calendar-heatmap",
     slug: "calendar-heatmap",
     title: "Calendar Heatmap",
+  },
+  {
+    demo: <FunnelChart steps={funnelSteps} unit="users" />,
+    description:
+      "A conversion funnel: centered tapering step bars with counts, % of first, step-over-step drop-off connectors, an overall conversion badge and hover detail. Pure computed layout.",
+    registryName: "funnel-chart",
+    slug: "funnel-chart",
+    title: "Funnel Chart",
   },
 ];
 
