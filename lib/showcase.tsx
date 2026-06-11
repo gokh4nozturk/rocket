@@ -23,6 +23,7 @@ import {
 import { QueryBuilder, type QueryField, type QueryGroup } from "@/components/craft/query-builder";
 import { type HttpRequest, RequestInspector } from "@/components/craft/request-inspector";
 import { type ResourceMetric, ResourceMonitor } from "@/components/craft/resource-monitor";
+import { type RoutingRule, RoutingRules } from "@/components/craft/routing-rules";
 import { SchemaDiagram, type SchemaTable } from "@/components/craft/schema-diagram";
 import { type DayStatus, type Service, StatusGrid } from "@/components/craft/status-grid";
 import { Timeline, type TimelineItem } from "@/components/craft/timeline";
@@ -1151,6 +1152,35 @@ const mapperTargetFields: MapperField[] = [
   { name: "country", type: "string" },
 ];
 
+const routingChannels = ["pagerduty", "#oncall", "#payments", "#alerts", "email:sre@acme.io"];
+
+const routingRulesData: RoutingRule[] = [
+  {
+    channel: "pagerduty",
+    enabled: true,
+    id: "r1",
+    name: "Critical pages",
+    servicePattern: "",
+    severities: ["critical"],
+  },
+  {
+    channel: "#payments",
+    enabled: true,
+    id: "r2",
+    name: "Payments team",
+    servicePattern: "payments",
+    severities: [],
+  },
+  {
+    channel: "#alerts",
+    enabled: true,
+    id: "r3",
+    name: "Catch-all",
+    servicePattern: "",
+    severities: [],
+  },
+];
+
 export const showcaseEntries: ShowcaseEntry[] = [
   {
     demo: <LogStreamDemo />,
@@ -1389,6 +1419,14 @@ export const showcaseEntries: ShowcaseEntry[] = [
     registryName: "field-mapper",
     slug: "field-mapper",
     title: "Field Mapper",
+  },
+  {
+    demo: <RoutingRules channels={routingChannels} rules={routingRulesData} />,
+    description:
+      "An ordered, first-match-wins alert routing rules editor: per-rule severity chips, service pattern, channel, enable toggle, reorder/remove/add — plus a live dry-run tester that highlights the matching rule.",
+    registryName: "routing-rules",
+    slug: "routing-rules",
+    title: "Routing Rules",
   },
 ];
 

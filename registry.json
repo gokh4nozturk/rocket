@@ -408,6 +408,20 @@
           "type": "registry:ui"
         }
       ]
+    },
+    {
+      "name": "routing-rules",
+      "type": "registry:ui",
+      "title": "Routing Rules",
+      "description": "An ordered, first-match-wins alert routing rules editor: per-rule severity chips, service pattern, channel, enable toggle, reorder/remove/add — plus a live dry-run tester that highlights the matching rule.",
+      "dependencies": ["lucide-react"],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/craft/routing-rules.tsx",
+          "type": "registry:ui"
+        }
+      ]
     }
   ]
 }

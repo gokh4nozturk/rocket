@@ -78,6 +78,8 @@ export const siteConfig = {
     "scheduler",
     "field mapper",
     "mapping",
+    "routing rules",
+    "alert routing",
     "ui components",
   ],
   name: "rocket",
