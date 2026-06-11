@@ -10,6 +10,7 @@ import { type Column, DataGrid } from "@/components/craft/data-grid";
 import { DataLineage, type LineageEdge, type LineageNode } from "@/components/craft/data-lineage";
 import { DataQuality, type QualityCheck } from "@/components/craft/data-quality";
 import { DiffViewer } from "@/components/craft/diff-viewer";
+import { FieldMapper, type MapperField } from "@/components/craft/field-mapper";
 import { FunnelChart, type FunnelStep } from "@/components/craft/funnel-chart";
 import { JsonInspector } from "@/components/craft/json-inspector";
 import { LatencyHistogram } from "@/components/craft/latency-histogram";
@@ -1130,6 +1131,26 @@ const dictionaryColumns: DictionaryColumn[] = [
   },
 ];
 
+const mapperSourceFields: MapperField[] = [
+  { name: "id", type: "int" },
+  { name: "email_address", type: "string" },
+  { name: "full_name", type: "string" },
+  { name: "signup_date", type: "string" },
+  { name: "plan_name", type: "string" },
+  { name: "mrr_usd", type: "float" },
+  { name: "country_code", type: "string" },
+];
+
+const mapperTargetFields: MapperField[] = [
+  { name: "user_id", required: true, type: "uuid" },
+  { name: "email", required: true, type: "string" },
+  { name: "name", type: "string" },
+  { name: "signed_up_at", type: "timestamp" },
+  { name: "plan", type: "string" },
+  { name: "mrr", type: "numeric" },
+  { name: "country", type: "string" },
+];
+
 export const showcaseEntries: ShowcaseEntry[] = [
   {
     demo: <LogStreamDemo />,
@@ -1360,6 +1381,14 @@ export const showcaseEntries: ShowcaseEntry[] = [
     registryName: "cron-builder",
     slug: "cron-builder",
     title: "Cron Builder",
+  },
+  {
+    demo: <FieldMapper sourceFields={mapperSourceFields} targetFields={mapperTargetFields} />,
+    description:
+      "An ETL field mapper: map source fields to a target schema with per-field transform selects, type-mismatch warnings, required validation, name-based auto-map and a mapping summary.",
+    registryName: "field-mapper",
+    slug: "field-mapper",
+    title: "Field Mapper",
   },
 ];
 

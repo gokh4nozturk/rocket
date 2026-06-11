@@ -76,6 +76,8 @@ export const siteConfig = {
     "catalog",
     "cron",
     "scheduler",
+    "field mapper",
+    "mapping",
     "ui components",
   ],
   name: "rocket",

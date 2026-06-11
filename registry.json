@@ -394,6 +394,20 @@
           "type": "registry:ui"
         }
       ]
+    },
+    {
+      "name": "field-mapper",
+      "type": "registry:ui",
+      "title": "Field Mapper",
+      "description": "An ETL field mapper: map source fields to a target schema with per-field transform selects, type-mismatch warnings, required validation, name-based auto-map and a mapping summary.",
+      "dependencies": ["lucide-react"],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/craft/field-mapper.tsx",
+          "type": "registry:ui"
+        }
+      ]
     }
   ]
 }
