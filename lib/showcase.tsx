@@ -13,6 +13,7 @@ import { DiffViewer } from "@/components/craft/diff-viewer";
 import { FieldMapper, type MapperField } from "@/components/craft/field-mapper";
 import { FunnelChart, type FunnelStep } from "@/components/craft/funnel-chart";
 import { JsonInspector } from "@/components/craft/json-inspector";
+import { JsonPathPicker } from "@/components/craft/json-path-picker";
 import { LatencyHistogram } from "@/components/craft/latency-histogram";
 import {
   type MetricAnnotation,
@@ -1181,6 +1182,24 @@ const routingRulesData: RoutingRule[] = [
   },
 ];
 
+const pickerData = {
+  customer: { email: "ada@acme.io", "full name": "Ada Lovelace", id: "cus_12af" },
+  meta: { source: "api", version: 2 },
+  orders: [
+    {
+      id: "ord_1042",
+      items: [
+        { qty: 2, sku: "TSHIRT-M" },
+        { qty: 1, sku: "MUG-01" },
+      ],
+      total: 5998,
+    },
+    { id: "ord_1043", items: [{ qty: 3, sku: "STICKER" }], total: 900 },
+  ],
+  paid: true,
+  promo: null,
+};
+
 export const showcaseEntries: ShowcaseEntry[] = [
   {
     demo: <LogStreamDemo />,
@@ -1427,6 +1446,14 @@ export const showcaseEntries: ShowcaseEntry[] = [
     registryName: "routing-rules",
     slug: "routing-rules",
     title: "Routing Rules",
+  },
+  {
+    demo: <JsonPathPicker data={pickerData} />,
+    description:
+      "A JSON path picker: click any node in a collapsible JSON tree to build a live JSONPath expression with breadcrumb navigation, a value preview with type info, and copy.",
+    registryName: "json-path-picker",
+    slug: "json-path-picker",
+    title: "JSON Path Picker",
   },
 ];
 

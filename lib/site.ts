@@ -80,6 +80,8 @@ export const siteConfig = {
     "mapping",
     "routing rules",
     "alert routing",
+    "json path",
+    "jsonpath",
     "ui components",
   ],
   name: "rocket",

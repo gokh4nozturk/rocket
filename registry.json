@@ -422,6 +422,20 @@
           "type": "registry:ui"
         }
       ]
+    },
+    {
+      "name": "json-path-picker",
+      "type": "registry:ui",
+      "title": "JSON Path Picker",
+      "description": "A JSON path picker: click any node in a collapsible JSON tree to build a live JSONPath expression with breadcrumb navigation, a value preview with type info, and copy.",
+      "dependencies": ["lucide-react"],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/craft/json-path-picker.tsx",
+          "type": "registry:ui"
+        }
+      ]
     }
   ]
 }
