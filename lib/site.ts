@@ -74,6 +74,8 @@ export const siteConfig = {
     "conversion",
     "data dictionary",
     "catalog",
+    "cron",
+    "scheduler",
     "ui components",
   ],
   name: "rocket",

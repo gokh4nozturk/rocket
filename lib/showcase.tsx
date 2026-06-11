@@ -4,6 +4,7 @@ import { type AuditEntry, AuditTrail } from "@/components/craft/audit-trail";
 import { CalendarHeatmap, type HeatmapDay } from "@/components/craft/calendar-heatmap";
 import { type Cohort, CohortHeatmap } from "@/components/craft/cohort-heatmap";
 import { type CommentNode, CommentThread } from "@/components/craft/comment-thread";
+import { CronBuilder } from "@/components/craft/cron-builder";
 import { DataDictionary, type DictionaryColumn } from "@/components/craft/data-dictionary";
 import { type Column, DataGrid } from "@/components/craft/data-grid";
 import { DataLineage, type LineageEdge, type LineageNode } from "@/components/craft/data-lineage";
@@ -1351,6 +1352,14 @@ export const showcaseEntries: ShowcaseEntry[] = [
     registryName: "data-dictionary",
     slug: "data-dictionary",
     title: "Data Dictionary",
+  },
+  {
+    demo: <CronBuilder value="0 9 * * 1" />,
+    description:
+      "A visual cron/schedule builder: presets (minute/hourly/daily/weekly/monthly/custom) with field editors, a live expression with copy, a human-readable description, validation errors and the next 3 run times (UTC).",
+    registryName: "cron-builder",
+    slug: "cron-builder",
+    title: "Cron Builder",
   },
 ];
 

@@ -380,6 +380,20 @@
           "type": "registry:ui"
         }
       ]
+    },
+    {
+      "name": "cron-builder",
+      "type": "registry:ui",
+      "title": "Cron Builder",
+      "description": "A visual cron/schedule builder: presets (minute/hourly/daily/weekly/monthly/custom) with field editors, a live expression with copy, a human-readable description, validation errors and the next 3 run times (UTC).",
+      "dependencies": ["lucide-react"],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/craft/cron-builder.tsx",
+          "type": "registry:ui"
+        }
+      ]
     }
   ]
 }
