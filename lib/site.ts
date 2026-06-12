@@ -88,6 +88,8 @@ export const siteConfig = {
     "error budget",
     "access matrix",
     "permissions",
+    "backoff",
+    "retry",
     "ui components",
   ],
   name: "rocket",

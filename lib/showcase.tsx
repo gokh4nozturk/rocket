@@ -2,6 +2,7 @@ import { AccessMatrix, type Permission } from "@/components/craft/access-matrix"
 import { ActivityFeed, type ActivityItem } from "@/components/craft/activity-feed";
 import { type Alert, AlertFeed } from "@/components/craft/alert-feed";
 import { type AuditEntry, AuditTrail } from "@/components/craft/audit-trail";
+import { BackoffPlanner } from "@/components/craft/backoff-planner";
 import { CalendarHeatmap, type HeatmapDay } from "@/components/craft/calendar-heatmap";
 import { type Cohort, CohortHeatmap } from "@/components/craft/cohort-heatmap";
 import { type CommentNode, CommentThread } from "@/components/craft/comment-thread";
@@ -1512,6 +1513,14 @@ export const showcaseEntries: ShowcaseEntry[] = [
     registryName: "access-matrix",
     slug: "access-matrix",
     title: "Access Matrix",
+  },
+  {
+    demo: <BackoffPlanner />,
+    description:
+      "A retry/backoff schedule planner: strategy (fixed/linear/exponential), base delay, multiplier, cap and retry count produce a deterministic attempt table with per-attempt delays, cap badges, cumulative wait and a worst-case total — with a full-jitter range mode.",
+    registryName: "backoff-planner",
+    slug: "backoff-planner",
+    title: "Backoff Planner",
   },
 ];
 
