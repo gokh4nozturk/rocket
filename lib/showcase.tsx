@@ -6,6 +6,7 @@ import { BackoffPlanner } from "@/components/craft/backoff-planner";
 import { CalendarHeatmap, type HeatmapDay } from "@/components/craft/calendar-heatmap";
 import { type Cohort, CohortHeatmap } from "@/components/craft/cohort-heatmap";
 import { type CommentNode, CommentThread } from "@/components/craft/comment-thread";
+import { ConnectionStringBuilder } from "@/components/craft/connection-string-builder";
 import { CronBuilder } from "@/components/craft/cron-builder";
 import { DataDictionary, type DictionaryColumn } from "@/components/craft/data-dictionary";
 import { type Column, DataGrid } from "@/components/craft/data-grid";
@@ -1539,6 +1540,14 @@ export const showcaseEntries: ShowcaseEntry[] = [
     registryName: "jwt-decoder",
     slug: "jwt-decoder",
     title: "JWT Decoder",
+  },
+  {
+    demo: <ConnectionStringBuilder />,
+    description:
+      "A live database connection-string builder: pick an engine (Postgres/MySQL/Redis/MongoDB), fill host, port, database and credentials, and get a color-highlighted URI with URL-encoded credentials, masked password with show/hide, an SSL toggle and one-click copy.",
+    registryName: "connection-string-builder",
+    slug: "connection-string-builder",
+    title: "Connection String Builder",
   },
 ];
 

@@ -94,6 +94,8 @@ export const siteConfig = {
     "ulid",
     "jwt",
     "token",
+    "connection string",
+    "database url",
     "ui components",
   ],
   name: "rocket",
