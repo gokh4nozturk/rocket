@@ -90,6 +90,8 @@ export const siteConfig = {
     "permissions",
     "backoff",
     "retry",
+    "uuid",
+    "ulid",
     "ui components",
   ],
   name: "rocket",

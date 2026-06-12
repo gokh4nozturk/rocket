@@ -492,6 +492,20 @@
           "type": "registry:ui"
         }
       ]
+    },
+    {
+      "name": "id-inspector",
+      "type": "registry:ui",
+      "title": "ID Inspector",
+      "description": "A UUID/ULID inspector: paste an identifier to detect its type and version, decode the embedded timestamp (UUID v1/v7, ULID), and see a color-banded segment view (time / randomness / version bits) with a field breakdown.",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/craft/id-inspector.tsx",
+          "type": "registry:ui"
+        }
+      ]
     }
   ]
 }

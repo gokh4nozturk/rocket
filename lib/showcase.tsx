@@ -14,6 +14,7 @@ import { DataQuality, type QualityCheck } from "@/components/craft/data-quality"
 import { DiffViewer } from "@/components/craft/diff-viewer";
 import { FieldMapper, type MapperField } from "@/components/craft/field-mapper";
 import { FunnelChart, type FunnelStep } from "@/components/craft/funnel-chart";
+import { IdInspector } from "@/components/craft/id-inspector";
 import { JsonInspector } from "@/components/craft/json-inspector";
 import { JsonPathPicker } from "@/components/craft/json-path-picker";
 import { LatencyHistogram } from "@/components/craft/latency-histogram";
@@ -1521,6 +1522,14 @@ export const showcaseEntries: ShowcaseEntry[] = [
     registryName: "backoff-planner",
     slug: "backoff-planner",
     title: "Backoff Planner",
+  },
+  {
+    demo: <IdInspector defaultValue="019bc1a3-0583-7abc-8def-0123456789ab" />,
+    description:
+      "A UUID/ULID inspector: paste an identifier to detect its type and version, decode the embedded timestamp (UUID v1/v7, ULID), and see a color-banded segment view (time / randomness / version bits) with a field breakdown.",
+    registryName: "id-inspector",
+    slug: "id-inspector",
+    title: "ID Inspector",
   },
 ];
 
