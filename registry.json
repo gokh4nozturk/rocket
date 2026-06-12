@@ -436,6 +436,20 @@
           "type": "registry:ui"
         }
       ]
+    },
+    {
+      "name": "regex-tester",
+      "type": "registry:ui",
+      "title": "Regex Tester",
+      "description": "A regex / log-pattern tester: pattern input with flag chips and validation errors, per-line match indicators with highlighted match spans, and a capture-group table (indexed + named) for the selected line.",
+      "dependencies": ["lucide-react"],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/craft/regex-tester.tsx",
+          "type": "registry:ui"
+        }
+      ]
     }
   ]
 }

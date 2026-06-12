@@ -22,6 +22,7 @@ import {
   type MetricThreshold,
 } from "@/components/craft/metric-chart";
 import { QueryBuilder, type QueryField, type QueryGroup } from "@/components/craft/query-builder";
+import { RegexTester } from "@/components/craft/regex-tester";
 import { type HttpRequest, RequestInspector } from "@/components/craft/request-inspector";
 import { type ResourceMetric, ResourceMonitor } from "@/components/craft/resource-monitor";
 import { type RoutingRule, RoutingRules } from "@/components/craft/routing-rules";
@@ -1200,6 +1201,13 @@ const pickerData = {
   promo: null,
 };
 
+const regexSample = [
+  "2026-06-12T08:01:13Z ERROR payments timeout after 3000ms user=cus_12af",
+  "2026-06-12T08:01:14Z INFO api request completed in 142ms",
+  "2026-06-12T08:02:02Z ERROR checkout timeout after 5000ms user=cus_98zz",
+  "2026-06-12T08:03:11Z WARN api slow response 920ms",
+].join("\n");
+
 export const showcaseEntries: ShowcaseEntry[] = [
   {
     demo: <LogStreamDemo />,
@@ -1454,6 +1462,19 @@ export const showcaseEntries: ShowcaseEntry[] = [
     registryName: "json-path-picker",
     slug: "json-path-picker",
     title: "JSON Path Picker",
+  },
+  {
+    demo: (
+      <RegexTester
+        initialPattern={"(?<service>\\w+) timeout after (?<ms>\\d+)ms"}
+        initialSample={regexSample}
+      />
+    ),
+    description:
+      "A regex / log-pattern tester: pattern input with flag chips and validation errors, per-line match indicators with highlighted match spans, and a capture-group table (indexed + named) for the selected line.",
+    registryName: "regex-tester",
+    slug: "regex-tester",
+    title: "Regex Tester",
   },
 ];
 

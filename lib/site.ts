@@ -82,6 +82,8 @@ export const siteConfig = {
     "alert routing",
     "json path",
     "jsonpath",
+    "regex",
+    "pattern tester",
     "ui components",
   ],
   name: "rocket",
