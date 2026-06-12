@@ -96,6 +96,8 @@ export const siteConfig = {
     "token",
     "connection string",
     "database url",
+    "rate limit",
+    "token bucket",
     "ui components",
   ],
   name: "rocket",

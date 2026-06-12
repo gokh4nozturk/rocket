@@ -27,6 +27,7 @@ import {
   type MetricThreshold,
 } from "@/components/craft/metric-chart";
 import { QueryBuilder, type QueryField, type QueryGroup } from "@/components/craft/query-builder";
+import { RateLimitSimulator } from "@/components/craft/rate-limit-simulator";
 import { RegexTester } from "@/components/craft/regex-tester";
 import { type HttpRequest, RequestInspector } from "@/components/craft/request-inspector";
 import { type ResourceMetric, ResourceMonitor } from "@/components/craft/resource-monitor";
@@ -1548,6 +1549,14 @@ export const showcaseEntries: ShowcaseEntry[] = [
     registryName: "connection-string-builder",
     slug: "connection-string-builder",
     title: "Connection String Builder",
+  },
+  {
+    demo: <RateLimitSimulator />,
+    description:
+      "A deterministic token-bucket rate-limit simulator: set capacity, refill rate, incoming traffic and a pattern (steady/spike/ramp) to get a second-by-second table of tokens, allowed and denied requests with totals and a does-refill-keep-up verdict.",
+    registryName: "rate-limit-simulator",
+    slug: "rate-limit-simulator",
+    title: "Rate Limit Simulator",
   },
 ];
 

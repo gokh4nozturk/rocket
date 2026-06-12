@@ -534,6 +534,20 @@
           "type": "registry:ui"
         }
       ]
+    },
+    {
+      "name": "rate-limit-simulator",
+      "type": "registry:ui",
+      "title": "Rate Limit Simulator",
+      "description": "A deterministic token-bucket rate-limit simulator: set capacity, refill rate, incoming traffic and a pattern (steady/spike/ramp) to get a second-by-second table of tokens, allowed and denied requests with totals and a does-refill-keep-up verdict.",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/craft/rate-limit-simulator.tsx",
+          "type": "registry:ui"
+        }
+      ]
     }
   ]
 }
