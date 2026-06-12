@@ -464,6 +464,20 @@
           "type": "registry:ui"
         }
       ]
+    },
+    {
+      "name": "access-matrix",
+      "type": "registry:ui",
+      "title": "Access Matrix",
+      "description": "A roles × resources access-matrix editor: cells cycle none → read → write, row/column headers bulk-assign, with a live grant summary and per-role counts.",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/craft/access-matrix.tsx",
+          "type": "registry:ui"
+        }
+      ]
     }
   ]
 }

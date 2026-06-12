@@ -1,3 +1,4 @@
+import { AccessMatrix, type Permission } from "@/components/craft/access-matrix";
 import { ActivityFeed, type ActivityItem } from "@/components/craft/activity-feed";
 import { type Alert, AlertFeed } from "@/components/craft/alert-feed";
 import { type AuditEntry, AuditTrail } from "@/components/craft/audit-trail";
@@ -1209,6 +1210,23 @@ const regexSample = [
   "2026-06-12T08:03:11Z WARN api slow response 920ms",
 ].join("\n");
 
+const matrixRoles = ["admin", "analyst", "service", "viewer"];
+const matrixResources = ["users", "orders", "events", "payments", "audit_log"];
+
+const matrixGrants: Record<string, Permission> = {
+  "admin:audit_log": "write",
+  "admin:events": "write",
+  "admin:orders": "write",
+  "admin:payments": "write",
+  "admin:users": "write",
+  "analyst:events": "read",
+  "analyst:orders": "read",
+  "analyst:users": "read",
+  "service:events": "write",
+  "service:orders": "read",
+  "viewer:orders": "read",
+};
+
 export const showcaseEntries: ShowcaseEntry[] = [
   {
     demo: <LogStreamDemo />,
@@ -1484,6 +1502,16 @@ export const showcaseEntries: ShowcaseEntry[] = [
     registryName: "slo-calculator",
     slug: "slo-calculator",
     title: "SLO Calculator",
+  },
+  {
+    demo: (
+      <AccessMatrix defaultGrants={matrixGrants} resources={matrixResources} roles={matrixRoles} />
+    ),
+    description:
+      "A roles × resources access-matrix editor: cells cycle none → read → write, row/column headers bulk-assign, with a live grant summary and per-role counts.",
+    registryName: "access-matrix",
+    slug: "access-matrix",
+    title: "Access Matrix",
   },
 ];
 

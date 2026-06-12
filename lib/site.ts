@@ -86,6 +86,8 @@ export const siteConfig = {
     "pattern tester",
     "slo",
     "error budget",
+    "access matrix",
+    "permissions",
     "ui components",
   ],
   name: "rocket",
