@@ -92,6 +92,8 @@ export const siteConfig = {
     "retry",
     "uuid",
     "ulid",
+    "jwt",
+    "token",
     "ui components",
   ],
   name: "rocket",

@@ -506,6 +506,20 @@
           "type": "registry:ui"
         }
       ]
+    },
+    {
+      "name": "jwt-decoder",
+      "type": "registry:ui",
+      "title": "JWT Decoder",
+      "description": "A JWT decoder: paste a token to see header and payload claim tables with time claims (exp/iat/nbf) rendered as UTC dates, a color-banded segment view, known-claim annotations and a deterministic lifetime summary — decode only, no signature verification.",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/craft/jwt-decoder.tsx",
+          "type": "registry:ui"
+        }
+      ]
     }
   ]
 }

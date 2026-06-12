@@ -17,6 +17,7 @@ import { FunnelChart, type FunnelStep } from "@/components/craft/funnel-chart";
 import { IdInspector } from "@/components/craft/id-inspector";
 import { JsonInspector } from "@/components/craft/json-inspector";
 import { JsonPathPicker } from "@/components/craft/json-path-picker";
+import { JWT_SAMPLE_TOKEN, JwtDecoder } from "@/components/craft/jwt-decoder";
 import { LatencyHistogram } from "@/components/craft/latency-histogram";
 import {
   type MetricAnnotation,
@@ -1530,6 +1531,14 @@ export const showcaseEntries: ShowcaseEntry[] = [
     registryName: "id-inspector",
     slug: "id-inspector",
     title: "ID Inspector",
+  },
+  {
+    demo: <JwtDecoder defaultValue={JWT_SAMPLE_TOKEN} />,
+    description:
+      "A JWT decoder: paste a token to see header and payload claim tables with time claims (exp/iat/nbf) rendered as UTC dates, a color-banded segment view, known-claim annotations and a deterministic lifetime summary — decode only, no signature verification.",
+    registryName: "jwt-decoder",
+    slug: "jwt-decoder",
+    title: "JWT Decoder",
   },
 ];
 
