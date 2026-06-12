@@ -27,6 +27,7 @@ import { type HttpRequest, RequestInspector } from "@/components/craft/request-i
 import { type ResourceMetric, ResourceMonitor } from "@/components/craft/resource-monitor";
 import { type RoutingRule, RoutingRules } from "@/components/craft/routing-rules";
 import { SchemaDiagram, type SchemaTable } from "@/components/craft/schema-diagram";
+import { SloCalculator } from "@/components/craft/slo-calculator";
 import { type DayStatus, type Service, StatusGrid } from "@/components/craft/status-grid";
 import { Timeline, type TimelineItem } from "@/components/craft/timeline";
 import { type TraceSpan, TraceWaterfall } from "@/components/craft/trace-waterfall";
@@ -1475,6 +1476,14 @@ export const showcaseEntries: ShowcaseEntry[] = [
     registryName: "regex-tester",
     slug: "regex-tester",
     title: "Regex Tester",
+  },
+  {
+    demo: <SloCalculator />,
+    description:
+      "An SLO / error-budget calculator: target presets + custom input and a time window produce allowed downtime (total, per-day, per-week), a request-based error budget, and a burn tracker with status.",
+    registryName: "slo-calculator",
+    slug: "slo-calculator",
+    title: "SLO Calculator",
   },
 ];
 

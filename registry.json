@@ -450,6 +450,20 @@
           "type": "registry:ui"
         }
       ]
+    },
+    {
+      "name": "slo-calculator",
+      "type": "registry:ui",
+      "title": "SLO Calculator",
+      "description": "An SLO / error-budget calculator: target presets + custom input and a time window produce allowed downtime (total, per-day, per-week), a request-based error budget, and a burn tracker with status.",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/craft/slo-calculator.tsx",
+          "type": "registry:ui"
+        }
+      ]
     }
   ]
 }

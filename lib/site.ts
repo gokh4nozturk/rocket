@@ -84,6 +84,8 @@ export const siteConfig = {
     "jsonpath",
     "regex",
     "pattern tester",
+    "slo",
+    "error budget",
     "ui components",
   ],
   name: "rocket",
