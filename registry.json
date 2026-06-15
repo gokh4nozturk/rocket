@@ -646,6 +646,20 @@
           "type": "registry:ui"
         }
       ]
+    },
+    {
+      "name": "csv-json-converter",
+      "type": "registry:ui",
+      "title": "CSV ⇄ JSON Converter",
+      "description": "A two-way CSV ⇄ JSON converter: paste CSV to get a typed array of objects (RFC-4180 quoting, numbers/booleans/null inference, quoted cells stay strings) or flip direction to serialize a JSON array back to CSV. Delimiter chips (comma/tab/semicolon) with auto-detection, row/column counts and copy. Pure and deterministic.",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/craft/csv-json-converter.tsx",
+          "type": "registry:ui"
+        }
+      ]
     }
   ]
 }

@@ -112,6 +112,8 @@ export const siteConfig = {
     "type inference",
     "url parser",
     "query string",
+    "csv",
+    "csv to json",
     "ui components",
   ],
   name: "rocket",

@@ -8,6 +8,7 @@ import { type Cohort, CohortHeatmap } from "@/components/craft/cohort-heatmap";
 import { type CommentNode, CommentThread } from "@/components/craft/comment-thread";
 import { ConnectionStringBuilder } from "@/components/craft/connection-string-builder";
 import { CronBuilder } from "@/components/craft/cron-builder";
+import { CsvJsonConverter } from "@/components/craft/csv-json-converter";
 import { DataDictionary, type DictionaryColumn } from "@/components/craft/data-dictionary";
 import { type Column, DataGrid } from "@/components/craft/data-grid";
 import { DataLineage, type LineageEdge, type LineageNode } from "@/components/craft/data-lineage";
@@ -1620,6 +1621,14 @@ export const showcaseEntries: ShowcaseEntry[] = [
     registryName: "url-inspector",
     slug: "url-inspector",
     title: "URL Inspector",
+  },
+  {
+    demo: <CsvJsonConverter />,
+    description:
+      "A two-way CSV ⇄ JSON converter: paste CSV to get a typed array of objects (RFC-4180 quoting, numbers/booleans/null inference, quoted cells stay strings) or flip direction to serialize a JSON array back to CSV. Delimiter chips (comma/tab/semicolon) with auto-detection, row/column counts and copy.",
+    registryName: "csv-json-converter",
+    slug: "csv-json-converter",
+    title: "CSV ⇄ JSON Converter",
   },
 ];
 
