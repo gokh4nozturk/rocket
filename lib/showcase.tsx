@@ -35,6 +35,7 @@ import { type RoutingRule, RoutingRules } from "@/components/craft/routing-rules
 import { SchemaDiagram, type SchemaTable } from "@/components/craft/schema-diagram";
 import { SloCalculator } from "@/components/craft/slo-calculator";
 import { type DayStatus, type Service, StatusGrid } from "@/components/craft/status-grid";
+import { StorageEstimator } from "@/components/craft/storage-estimator";
 import { Timeline, type TimelineItem } from "@/components/craft/timeline";
 import { type TraceSpan, TraceWaterfall } from "@/components/craft/trace-waterfall";
 import { Treemap, type TreemapNode } from "@/components/craft/treemap";
@@ -1557,6 +1558,14 @@ export const showcaseEntries: ShowcaseEntry[] = [
     registryName: "rate-limit-simulator",
     slug: "rate-limit-simulator",
     title: "Rate Limit Simulator",
+  },
+  {
+    demo: <StorageEstimator />,
+    description:
+      "A live table-storage estimator: build a mini schema (column types, nullability, average sizes for variable types) and get a per-row byte breakdown (tuple header, null bitmap, columns) and a total size estimate for any row count — simplified Postgres-like model.",
+    registryName: "storage-estimator",
+    slug: "storage-estimator",
+    title: "Storage Estimator",
   },
 ];
 

@@ -548,6 +548,20 @@
           "type": "registry:ui"
         }
       ]
+    },
+    {
+      "name": "storage-estimator",
+      "type": "registry:ui",
+      "title": "Storage Estimator",
+      "description": "A live table-storage estimator: build a mini schema (column types, nullability, average sizes for variable types) and get a per-row byte breakdown (tuple header, null bitmap, columns) and a total size estimate for any row count — simplified Postgres-like model.",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/craft/storage-estimator.tsx",
+          "type": "registry:ui"
+        }
+      ]
     }
   ]
 }
