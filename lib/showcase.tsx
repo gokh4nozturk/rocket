@@ -15,6 +15,7 @@ import { type Column, DataGrid } from "@/components/craft/data-grid";
 import { DataLineage, type LineageEdge, type LineageNode } from "@/components/craft/data-lineage";
 import { DataQuality, type QualityCheck } from "@/components/craft/data-quality";
 import { DiffViewer } from "@/components/craft/diff-viewer";
+import { EnvLinter } from "@/components/craft/env-linter";
 import { FieldMapper, type MapperField } from "@/components/craft/field-mapper";
 import { FunnelChart, type FunnelStep } from "@/components/craft/funnel-chart";
 import { IdInspector } from "@/components/craft/id-inspector";
@@ -1638,6 +1639,14 @@ export const showcaseEntries: ShowcaseEntry[] = [
     registryName: "curl-converter",
     slug: "curl-converter",
     title: "cURL Converter",
+  },
+  {
+    demo: <EnvLinter />,
+    description:
+      "A live .env file linter: paste environment variables to get a parsed key/value table (sensitive values masked with a reveal toggle) and per-line findings — invalid key names, missing '=', unclosed quotes, spaces around '=', unquoted values with spaces, duplicate keys and undefined variable references, with an error/warning summary.",
+    registryName: "env-linter",
+    slug: "env-linter",
+    title: "Env Linter",
   },
 ];
 

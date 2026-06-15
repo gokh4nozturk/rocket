@@ -674,6 +674,20 @@
           "type": "registry:ui"
         }
       ]
+    },
+    {
+      "name": "env-linter",
+      "type": "registry:ui",
+      "title": "Env Linter",
+      "description": "A live .env file linter: paste environment variables to get a parsed key/value table (sensitive values masked with a reveal toggle) and per-line findings — invalid key names, missing '=', unclosed quotes, spaces around '=', unquoted values with spaces, duplicate keys and undefined ${VAR} references, with an error/warning summary. Pure and deterministic.",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/craft/env-linter.tsx",
+          "type": "registry:ui"
+        }
+      ]
     }
   ]
 }

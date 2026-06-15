@@ -116,6 +116,8 @@ export const siteConfig = {
     "csv to json",
     "curl",
     "fetch",
+    "dotenv",
+    "env linter",
     "ui components",
   ],
   name: "rocket",
