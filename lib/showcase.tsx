@@ -39,6 +39,7 @@ import { SloCalculator } from "@/components/craft/slo-calculator";
 import { type DayStatus, type Service, StatusGrid } from "@/components/craft/status-grid";
 import { StorageEstimator } from "@/components/craft/storage-estimator";
 import { Timeline, type TimelineItem } from "@/components/craft/timeline";
+import { TimestampConverter } from "@/components/craft/timestamp-converter";
 import { type TraceSpan, TraceWaterfall } from "@/components/craft/trace-waterfall";
 import { Treemap, type TreemapNode } from "@/components/craft/treemap";
 import { WebhookSignatureVerifier } from "@/components/craft/webhook-signature-verifier";
@@ -1593,6 +1594,14 @@ export const showcaseEntries: ShowcaseEntry[] = [
     registryName: "log-scrubber",
     slug: "log-scrubber",
     title: "Log Scrubber",
+  },
+  {
+    demo: <TimestampConverter />,
+    description:
+      "A live timestamp converter for logs: paste an epoch (seconds or millis, auto-detected) or an ISO 8601 / date string and get epoch seconds, epoch millis, ISO 8601, a human-readable UTC date, multi-zone wall-clock times (UTC, New York, Istanbul, Tokyo) with offsets, and a relative time — all copy-ready.",
+    registryName: "timestamp-converter",
+    slug: "timestamp-converter",
+    title: "Timestamp Converter",
   },
 ];
 

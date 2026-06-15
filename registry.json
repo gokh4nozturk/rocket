@@ -604,6 +604,20 @@
           "type": "registry:ui"
         }
       ]
+    },
+    {
+      "name": "timestamp-converter",
+      "type": "registry:ui",
+      "title": "Timestamp Converter",
+      "description": "A live timestamp converter for logs: paste an epoch (seconds or millis, auto-detected) or an ISO 8601 / date string and get epoch seconds, epoch millis, ISO 8601, a human-readable UTC date, multi-zone wall-clock times (UTC, New York, Istanbul, Tokyo) with offsets, and a relative time — all copy-ready. Pure and deterministic.",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/craft/timestamp-converter.tsx",
+          "type": "registry:ui"
+        }
+      ]
     }
   ]
 }
