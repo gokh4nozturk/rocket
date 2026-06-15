@@ -104,6 +104,8 @@ export const siteConfig = {
     "log parsing",
     "webhook",
     "hmac signature",
+    "pii redaction",
+    "log scrubber",
     "ui components",
   ],
   name: "rocket",

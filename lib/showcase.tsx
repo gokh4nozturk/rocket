@@ -20,6 +20,7 @@ import { JsonInspector } from "@/components/craft/json-inspector";
 import { JsonPathPicker } from "@/components/craft/json-path-picker";
 import { JWT_SAMPLE_TOKEN, JwtDecoder } from "@/components/craft/jwt-decoder";
 import { LatencyHistogram } from "@/components/craft/latency-histogram";
+import { LogScrubber } from "@/components/craft/log-scrubber";
 import { LogfmtInspector } from "@/components/craft/logfmt-inspector";
 import {
   type MetricAnnotation,
@@ -1584,6 +1585,14 @@ export const showcaseEntries: ShowcaseEntry[] = [
     registryName: "webhook-signature-verifier",
     slug: "webhook-signature-verifier",
     title: "Webhook Signature Verifier",
+  },
+  {
+    demo: <LogScrubber />,
+    description:
+      "A live PII redactor for logs and text: toggle built-in detectors (email, IPv4, credit card, JWT/token, UUID) plus a custom regex, pick a mask mode (type label, keep-last-4, or full bullets), and get scrubbed output with highlighted masks, per-rule match counts and one-click copy.",
+    registryName: "log-scrubber",
+    slug: "log-scrubber",
+    title: "Log Scrubber",
   },
 ];
 

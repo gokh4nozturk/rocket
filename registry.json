@@ -590,6 +590,20 @@
           "type": "registry:ui"
         }
       ]
+    },
+    {
+      "name": "log-scrubber",
+      "type": "registry:ui",
+      "title": "Log Scrubber",
+      "description": "A live PII redactor for logs and text: toggle built-in detectors (email, IPv4, credit card, JWT/token, UUID) plus a custom regex, pick a mask mode (type label, keep-last-4, or full bullets), and get scrubbed output with highlighted masks, per-rule match counts and one-click copy. Pure and deterministic with overlap-safe matching.",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/craft/log-scrubber.tsx",
+          "type": "registry:ui"
+        }
+      ]
     }
   ]
 }
