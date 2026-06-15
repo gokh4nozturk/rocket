@@ -660,6 +660,20 @@
           "type": "registry:ui"
         }
       ]
+    },
+    {
+      "name": "curl-converter",
+      "type": "registry:ui",
+      "title": "cURL Converter",
+      "description": "A curl-to-fetch converter: paste a curl command and get a structured breakdown (method, URL, headers, body) plus equivalent JavaScript fetch() code. Handles quotes, line continuations, -X/-H/-d/-u/-G flags (basic auth, query promotion) and copy. Pure and deterministic.",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/craft/curl-converter.tsx",
+          "type": "registry:ui"
+        }
+      ]
     }
   ]
 }

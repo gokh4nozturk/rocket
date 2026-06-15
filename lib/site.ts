@@ -114,6 +114,8 @@ export const siteConfig = {
     "query string",
     "csv",
     "csv to json",
+    "curl",
+    "fetch",
     "ui components",
   ],
   name: "rocket",

@@ -9,6 +9,7 @@ import { type CommentNode, CommentThread } from "@/components/craft/comment-thre
 import { ConnectionStringBuilder } from "@/components/craft/connection-string-builder";
 import { CronBuilder } from "@/components/craft/cron-builder";
 import { CsvJsonConverter } from "@/components/craft/csv-json-converter";
+import { CurlConverter } from "@/components/craft/curl-converter";
 import { DataDictionary, type DictionaryColumn } from "@/components/craft/data-dictionary";
 import { type Column, DataGrid } from "@/components/craft/data-grid";
 import { DataLineage, type LineageEdge, type LineageNode } from "@/components/craft/data-lineage";
@@ -1629,6 +1630,14 @@ export const showcaseEntries: ShowcaseEntry[] = [
     registryName: "csv-json-converter",
     slug: "csv-json-converter",
     title: "CSV ⇄ JSON Converter",
+  },
+  {
+    demo: <CurlConverter />,
+    description:
+      "A curl-to-fetch converter: paste a curl command and get a structured breakdown (method, URL, headers, body) plus equivalent JavaScript fetch() code. Handles quotes, line continuations, -X/-H/-d/-u/-G flags (basic auth, query promotion) and copy.",
+    registryName: "curl-converter",
+    slug: "curl-converter",
+    title: "cURL Converter",
   },
 ];
 
