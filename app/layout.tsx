@@ -1,3 +1,4 @@
+import { Analytics } from "@vercel/analytics/next";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { MobileNav } from "@/components/showcase/mobile-nav";
@@ -77,6 +78,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <main className="min-w-0 flex-1 px-6 py-8 md:ml-56 md:py-12">{children}</main>
           </div>
         </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   );
