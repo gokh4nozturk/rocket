@@ -100,6 +100,8 @@ export const siteConfig = {
     "token bucket",
     "storage",
     "estimator",
+    "logfmt",
+    "log parsing",
     "ui components",
   ],
   name: "rocket",

@@ -20,6 +20,7 @@ import { JsonInspector } from "@/components/craft/json-inspector";
 import { JsonPathPicker } from "@/components/craft/json-path-picker";
 import { JWT_SAMPLE_TOKEN, JwtDecoder } from "@/components/craft/jwt-decoder";
 import { LatencyHistogram } from "@/components/craft/latency-histogram";
+import { LogfmtInspector } from "@/components/craft/logfmt-inspector";
 import {
   type MetricAnnotation,
   MetricChart,
@@ -1566,6 +1567,14 @@ export const showcaseEntries: ShowcaseEntry[] = [
     registryName: "storage-estimator",
     slug: "storage-estimator",
     title: "Storage Estimator",
+  },
+  {
+    demo: <LogfmtInspector />,
+    description:
+      "A logfmt ⇄ JSON converter: paste a logfmt log line to get a typed key/value table (string/number/boolean/duration/null), a color-banded segment view and pretty JSON output — or flip direction to serialize a JSON object back to logfmt.",
+    registryName: "logfmt-inspector",
+    slug: "logfmt-inspector",
+    title: "Logfmt Inspector",
   },
 ];
 

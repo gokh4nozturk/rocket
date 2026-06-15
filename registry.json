@@ -562,6 +562,20 @@
           "type": "registry:ui"
         }
       ]
+    },
+    {
+      "name": "logfmt-inspector",
+      "type": "registry:ui",
+      "title": "Logfmt Inspector",
+      "description": "A logfmt ⇄ JSON converter: paste a logfmt log line to get a typed key/value table (string/number/boolean/duration/null), a color-banded segment view and pretty JSON output — or flip direction to serialize a JSON object back to logfmt. Pure, deterministic, copy-ready.",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/craft/logfmt-inspector.tsx",
+          "type": "registry:ui"
+        }
+      ]
     }
   ]
 }
