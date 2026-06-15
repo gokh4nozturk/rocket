@@ -18,6 +18,7 @@ import { FunnelChart, type FunnelStep } from "@/components/craft/funnel-chart";
 import { IdInspector } from "@/components/craft/id-inspector";
 import { JsonInspector } from "@/components/craft/json-inspector";
 import { JsonPathPicker } from "@/components/craft/json-path-picker";
+import { JsonSchemaInferer } from "@/components/craft/json-schema-inferer";
 import { JWT_SAMPLE_TOKEN, JwtDecoder } from "@/components/craft/jwt-decoder";
 import { LatencyHistogram } from "@/components/craft/latency-histogram";
 import { LogScrubber } from "@/components/craft/log-scrubber";
@@ -42,6 +43,7 @@ import { Timeline, type TimelineItem } from "@/components/craft/timeline";
 import { TimestampConverter } from "@/components/craft/timestamp-converter";
 import { type TraceSpan, TraceWaterfall } from "@/components/craft/trace-waterfall";
 import { Treemap, type TreemapNode } from "@/components/craft/treemap";
+import { UrlInspector } from "@/components/craft/url-inspector";
 import { WebhookSignatureVerifier } from "@/components/craft/webhook-signature-verifier";
 import { DataFreshnessDemo } from "@/components/showcase/data-freshness-demo";
 import { LogStreamDemo } from "@/components/showcase/log-stream-demo";
@@ -1602,6 +1604,22 @@ export const showcaseEntries: ShowcaseEntry[] = [
     registryName: "timestamp-converter",
     slug: "timestamp-converter",
     title: "Timestamp Converter",
+  },
+  {
+    demo: <JsonSchemaInferer />,
+    description:
+      "A live JSON Schema / TypeScript type inferer: paste a sample JSON payload and get a draft-07 JSON Schema or an equivalent TypeScript type — with integer/number distinction, string format detection (date-time/date/email/uuid), nested objects, array item merging and optional-field detection across array items.",
+    registryName: "json-schema-inferer",
+    slug: "json-schema-inferer",
+    title: "JSON Schema Inferer",
+  },
+  {
+    demo: <UrlInspector />,
+    description:
+      "A live URL inspector: paste any URL to break it into scheme, host, port (explicit or default), path segments and hash, with a percent-decoded query-parameter table — copy any value, or drop tracking params to rebuild a clean normalized URL.",
+    registryName: "url-inspector",
+    slug: "url-inspector",
+    title: "URL Inspector",
   },
 ];
 

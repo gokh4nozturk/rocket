@@ -618,6 +618,34 @@
           "type": "registry:ui"
         }
       ]
+    },
+    {
+      "name": "json-schema-inferer",
+      "type": "registry:ui",
+      "title": "JSON Schema Inferer",
+      "description": "A live JSON Schema / TypeScript type inferer: paste a sample JSON payload and get a draft-07 JSON Schema or an equivalent TypeScript type — with integer/number distinction, string format detection (date-time/date/email/uuid), nested objects, array item merging and optional-field detection across array items. Pure, deterministic, copy-ready.",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/craft/json-schema-inferer.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "url-inspector",
+      "type": "registry:ui",
+      "title": "URL Inspector",
+      "description": "A live URL inspector: paste any URL to break it into scheme, host, port (explicit or default), path segments and hash, with a percent-decoded query-parameter table — copy any value, or drop tracking params to rebuild a clean normalized URL. Pure and deterministic via the URL API.",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/craft/url-inspector.tsx",
+          "type": "registry:ui"
+        }
+      ]
     }
   ]
 }
