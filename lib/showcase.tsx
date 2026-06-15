@@ -40,6 +40,7 @@ import { StorageEstimator } from "@/components/craft/storage-estimator";
 import { Timeline, type TimelineItem } from "@/components/craft/timeline";
 import { type TraceSpan, TraceWaterfall } from "@/components/craft/trace-waterfall";
 import { Treemap, type TreemapNode } from "@/components/craft/treemap";
+import { WebhookSignatureVerifier } from "@/components/craft/webhook-signature-verifier";
 import { DataFreshnessDemo } from "@/components/showcase/data-freshness-demo";
 import { LogStreamDemo } from "@/components/showcase/log-stream-demo";
 import { SqlConsoleDemo } from "@/components/showcase/sql-console-demo";
@@ -1575,6 +1576,14 @@ export const showcaseEntries: ShowcaseEntry[] = [
     registryName: "logfmt-inspector",
     slug: "logfmt-inspector",
     title: "Logfmt Inspector",
+  },
+  {
+    demo: <WebhookSignatureVerifier />,
+    description:
+      "A live webhook HMAC signature verifier: paste a payload, signing secret and the provider's expected signature, pick an algorithm (SHA-256/SHA-1/SHA-512) and encoding (hex/base64), and get the computed HMAC plus a constant-time valid/mismatch verdict. Auto-detects Stripe and prefixed signature formats.",
+    registryName: "webhook-signature-verifier",
+    slug: "webhook-signature-verifier",
+    title: "Webhook Signature Verifier",
   },
 ];
 

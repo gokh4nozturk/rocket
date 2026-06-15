@@ -576,6 +576,20 @@
           "type": "registry:ui"
         }
       ]
+    },
+    {
+      "name": "webhook-signature-verifier",
+      "type": "registry:ui",
+      "title": "Webhook Signature Verifier",
+      "description": "A live webhook HMAC signature verifier: paste a payload, signing secret and the provider's expected signature, pick an algorithm (SHA-256/SHA-1/SHA-512) and encoding (hex/base64), and get the computed HMAC plus a constant-time valid/mismatch verdict. Auto-detects Stripe (t=…,v1=…) and prefixed (sha256=…) signature formats.",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/craft/webhook-signature-verifier.tsx",
+          "type": "registry:ui"
+        }
+      ]
     }
   ]
 }

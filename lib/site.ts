@@ -102,6 +102,8 @@ export const siteConfig = {
     "estimator",
     "logfmt",
     "log parsing",
+    "webhook",
+    "hmac signature",
     "ui components",
   ],
   name: "rocket",
