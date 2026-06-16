@@ -118,6 +118,8 @@ export const siteConfig = {
     "fetch",
     "dotenv",
     "env linter",
+    "log patterns",
+    "log clustering",
     "ui components",
   ],
   name: "rocket",

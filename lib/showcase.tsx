@@ -24,6 +24,7 @@ import { JsonPathPicker } from "@/components/craft/json-path-picker";
 import { JsonSchemaInferer } from "@/components/craft/json-schema-inferer";
 import { JWT_SAMPLE_TOKEN, JwtDecoder } from "@/components/craft/jwt-decoder";
 import { LatencyHistogram } from "@/components/craft/latency-histogram";
+import { LogPatterns } from "@/components/craft/log-patterns";
 import { LogScrubber } from "@/components/craft/log-scrubber";
 import { LogfmtInspector } from "@/components/craft/logfmt-inspector";
 import {
@@ -1647,6 +1648,14 @@ export const showcaseEntries: ShowcaseEntry[] = [
     registryName: "env-linter",
     slug: "env-linter",
     title: "Env Linter",
+  },
+  {
+    demo: <LogPatterns />,
+    description:
+      "A log pattern extractor: paste raw log lines and cluster them into templates by masking variable tokens (timestamps, IPs, UUIDs, numbers, durations, hex, ids and key=value values), then see each template with its frequency, percentage and an example — sorted by count with a min-count filter.",
+    registryName: "log-patterns",
+    slug: "log-patterns",
+    title: "Log Pattern Extractor",
   },
 ];
 

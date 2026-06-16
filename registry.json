@@ -688,6 +688,20 @@
           "type": "registry:ui"
         }
       ]
+    },
+    {
+      "name": "log-patterns",
+      "type": "registry:ui",
+      "title": "Log Pattern Extractor",
+      "description": "A log pattern extractor: paste raw log lines and cluster them into templates by masking variable tokens (timestamps, IPs, UUIDs, numbers, durations, hex, ids and key=value values), then see each template with its frequency, percentage and an example — sorted by count with a min-count filter. Pure and deterministic.",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/craft/log-patterns.tsx",
+          "type": "registry:ui"
+        }
+      ]
     }
   ]
 }
